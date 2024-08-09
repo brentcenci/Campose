@@ -13,7 +13,6 @@ import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import campose.composeapp.generated.resources.*
-import coil3.annotation.ExperimentalCoilApi
 import com.brentcodes.campose.theme.AppTheme
 import com.brentcodes.campose.theme.LocalThemeIsDark
 import kotlinx.coroutines.isActive
@@ -31,7 +30,7 @@ internal fun App() = AppTheme {
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Card()
+        com.brentcodes.campose.components.cards.Card()
         Spacer(Modifier.height(100.dp))
 
         Text(
