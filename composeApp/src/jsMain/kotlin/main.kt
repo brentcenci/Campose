@@ -8,6 +8,7 @@ import org.w3c.dom.url.URLSearchParams
 
 @OptIn(ExperimentalComposeUiApi::class)
 fun main() {
+
     onWasmReady {
         CanvasBasedWindow("Campose") {
             val queryParams = URLSearchParams(window.location.search)
