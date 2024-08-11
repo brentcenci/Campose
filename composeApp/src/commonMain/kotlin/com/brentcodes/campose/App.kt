@@ -30,7 +30,6 @@ internal fun App() = AppTheme {
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        com.brentcodes.campose.components.cards.Card()
         Spacer(Modifier.height(100.dp))
 
         Text(
