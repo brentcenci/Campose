@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -69,7 +70,7 @@ fun ImageCardWithButton(title: String, content: String, imageUrl: String, button
             Spacer(modifier = Modifier.height(16.dp))
             Text(text = title, fontSize = 28.sp, color = Color.DarkGray, fontWeight = FontWeight.Bold)
             Text(text = content, color = Color.DarkGray)
-            Button( onClick = {}, modifier = Modifier.align(Alignment.CenterHorizontally).padding(top = 16.dp), shape = RoundedCornerShape(10.dp)) {
+            Button( onClick = {}, modifier = Modifier.align(Alignment.End).padding(top = 16.dp), shape = RoundedCornerShape(10.dp)) {
                 Text(text = buttonText)
             }
         }
@@ -105,4 +106,24 @@ fun ImageCardWithBadges(title: String, content: String, imageUrl: String, titleB
             }
         }
     }
+}
+
+@Composable
+fun CardWithSideImage(title: String, content: String, imageUrl: String) {
+    Box(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).width(300.dp)) {
+        Row(modifier = Modifier.clip(RoundedCornerShape(20.dp))) {
+            AsyncImage(
+                model = imageUrl,
+                contentDescription = "Placeholder",
+                imageLoader = ImageLoader(context = PlatformContext.INSTANCE),
+                modifier = Modifier.size(100.dp),
+                contentScale = ContentScale.Crop
+            )
+            Column(modifier = Modifier.padding(20.dp), verticalArrangement = Arrangement.Center) {
+                Text(text = title, fontSize = 24.sp, color = Color.DarkGray, fontWeight = FontWeight.Bold)
+                Text(text = content, color = Color.DarkGray)
+            }
+        }
+    }
+
 }
