@@ -18,6 +18,7 @@ import com.brentcodes.campose.components.CardWithSideImage
 import com.brentcodes.campose.components.ImageCard
 import com.brentcodes.campose.components.ImageCardWithBadges
 import com.brentcodes.campose.components.ImageCardWithButton
+import com.brentcodes.campose.components.VideoCard
 import kotlinx.browser.window
 import org.jetbrains.skiko.wasm.onWasmReady
 import org.w3c.dom.url.URLSearchParams
@@ -59,6 +60,15 @@ fun main() {
                             content = "Short and sweet content section",
                             imageUrl = "https://picsum.photos/400/400"
                         )
+                        "videocard" -> VideoCard(
+                            title = "Short Title",
+                            authorName = "PewDiePie",
+                            authorImage = "https://picsum.photos/100/100",
+                            views = "1.5M views ",
+                            time = "22 hours ago",
+                            length = "12:34",
+                            imageUrl = "https://picsum.photos/500/500"
+                        )
                     }
                     else -> {
                         FlowColumn(verticalArrangement = Arrangement.spacedBy(20.dp), horizontalArrangement = Arrangement.spacedBy(20.dp)) {
@@ -88,6 +98,15 @@ fun main() {
                                 title = "Short Title",
                                 content = "Short and sweet content section",
                                 imageUrl = "https://picsum.photos/400/400"
+                            )
+                            VideoCard(
+                                title = "Short Title",
+                                authorName = "PewDiePie",
+                                authorImage = "https://picsum.photos/100/100",
+                                views = "1.5M views ",
+                                time = "22 hours ago",
+                                length = "12:34",
+                                imageUrl = "https://picsum.photos/500/500"
                             )
                         }
                     }
