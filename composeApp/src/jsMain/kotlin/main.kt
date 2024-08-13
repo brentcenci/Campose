@@ -1,7 +1,6 @@
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowColumn
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,13 +11,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.CanvasBasedWindow
-import com.brentcodes.campose.App
 import com.brentcodes.campose.components.Card
 import com.brentcodes.campose.components.CardWithSideImage
 import com.brentcodes.campose.components.ImageCard
 import com.brentcodes.campose.components.ImageCardWithBadges
 import com.brentcodes.campose.components.ImageCardWithButton
-import com.brentcodes.campose.components.VideoCard
+import com.brentcodes.campose.components.VideoCardYoutubeStyle
 import kotlinx.browser.window
 import org.jetbrains.skiko.wasm.onWasmReady
 import org.w3c.dom.url.URLSearchParams
@@ -60,7 +58,7 @@ fun main() {
                             content = "Short and sweet content section",
                             imageUrl = "https://picsum.photos/400/400"
                         )
-                        "videocard" -> VideoCard(
+                        "videocardyoutubestyle" -> VideoCardYoutubeStyle(
                             title = "Short Title",
                             authorName = "PewDiePie",
                             authorImage = "https://picsum.photos/100/100",
@@ -99,7 +97,7 @@ fun main() {
                                 content = "Short and sweet content section",
                                 imageUrl = "https://picsum.photos/400/400"
                             )
-                            VideoCard(
+                            VideoCardYoutubeStyle(
                                 title = "Short Title",
                                 authorName = "PewDiePie",
                                 authorImage = "https://picsum.photos/100/100",

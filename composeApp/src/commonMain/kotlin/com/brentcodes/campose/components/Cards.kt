@@ -129,39 +129,41 @@ fun CardWithSideImage(title: String, content: String, imageUrl: String) {
 }
 
 @Composable
-fun VideoCard(title: String, authorName: String, authorImage: String, views: String, time: String, length: String, imageUrl: String) {
-    Column {
-        Box {
-            AsyncImage(
-                model = imageUrl,
-                contentDescription = "Placeholder",
-                imageLoader = ImageLoader(context = PlatformContext.INSTANCE),
-                modifier = Modifier.size(height = 300.dp, width = 500.dp).clip(RoundedCornerShape(10.dp)),
-                contentScale = ContentScale.Crop
-            )
-            Text(
-                text = length,
-                color = Color.White,
-                modifier = Modifier.padding(4.dp).background(Color.Black.copy(alpha= 0.8f), RoundedCornerShape(8.dp)).align(Alignment.BottomEnd)
-            )
-        }
-        Row {
-            AsyncImage(
-                model = authorImage,
-                contentDescription = "Placeholder",
-                imageLoader = ImageLoader(context = PlatformContext.INSTANCE),
-                modifier = Modifier.size(100.dp).clip(RoundedCornerShape(50)),
-                contentScale = ContentScale.Crop
-            )
-            Column(modifier = Modifier.weight(1f)) {
-                Text(text = title, fontSize = 18.sp, color = Color.DarkGray, fontWeight = FontWeight.Bold)
-                Text(text = authorName, color = Color.DarkGray)
-                Row {
-                    Text(text = views, color = Color.LightGray)
-                    Text(text = time, color = Color.LightGray)
+fun VideoCardYoutubeStyle(title: String, authorName: String, authorImage: String, views: String, time: String, length: String, imageUrl: String) {
+    Box(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp)) {
+        Column(modifier = Modifier.width(400.dp)) {
+            Box(modifier = Modifier.padding(bottom = 8.dp)) {
+                AsyncImage(
+                    model = imageUrl,
+                    contentDescription = "Placeholder",
+                    imageLoader = ImageLoader(context = PlatformContext.INSTANCE),
+                    modifier = Modifier.size(height = 240.dp, width = 400.dp).clip(RoundedCornerShape(10.dp)),
+                    contentScale = ContentScale.Crop
+                )
+                Text(
+                    text = length,
+                    color = Color.White,
+                    modifier = Modifier.padding(6.dp).background(Color.Black.copy(alpha= 0.6f), RoundedCornerShape(2.dp)).align(Alignment.BottomEnd).padding(4.dp)
+                )
+            }
+            Row {
+                AsyncImage(
+                    model = authorImage,
+                    contentDescription = "Placeholder",
+                    imageLoader = ImageLoader(context = PlatformContext.INSTANCE),
+                    modifier = Modifier.size(24.dp).clip(RoundedCornerShape(50)),
+                    contentScale = ContentScale.Crop
+                )
+                Column(modifier = Modifier.padding(start = 8.dp).weight(1f)) {
+                    Text(text = title, fontSize = 18.sp, color = Color.DarkGray, fontWeight = FontWeight.Bold)
+                    Text(text = authorName, color = Color.DarkGray)
+                    Row {
+                        Text(text = "$views · $time" , color = Color.DarkGray)
+                    }
                 }
             }
-        }
 
+        }
     }
+
 }
