@@ -16,6 +16,7 @@ import com.brentcodes.campose.components.CardWithSideImage
 import com.brentcodes.campose.components.ImageCard
 import com.brentcodes.campose.components.ImageCardWithBadges
 import com.brentcodes.campose.components.ImageCardWithButton
+import com.brentcodes.campose.components.VideoCard
 import com.brentcodes.campose.components.VideoCardYoutubeStyle
 import kotlinx.browser.window
 import org.jetbrains.skiko.wasm.onWasmReady
@@ -67,6 +68,14 @@ fun main() {
                             length = "12:34",
                             imageUrl = "https://picsum.photos/500/500"
                         )
+                        "videocard" -> VideoCard(
+                            title = "You won't believe what happens next",
+                            summary = "In this video, we try something crazy! Subscribe to make sure you never miss out!",
+                            length = "1:23",
+                            imageUrl = "https://picsum.photos/500/500",
+                            authorName = "CoolVideoGuy42",
+                            authorImage = "https://picsum.photos/100/100",
+                        )
                     }
                     else -> {
                         FlowColumn(verticalArrangement = Arrangement.spacedBy(20.dp), horizontalArrangement = Arrangement.spacedBy(20.dp)) {
@@ -105,6 +114,14 @@ fun main() {
                                 time = "22 hours ago",
                                 length = "12:34",
                                 imageUrl = "https://picsum.photos/500/500"
+                            )
+                            VideoCard(
+                                title = "You won't believe what happens next",
+                                summary = "In this video, we try something crazy! Subscribe to make sure you never miss out!",
+                                length = "1:23",
+                                imageUrl = "https://picsum.photos/500/500",
+                                authorName = "CoolVideoGuy42",
+                                authorImage = "https://picsum.photos/100/100",
                             )
                         }
                     }

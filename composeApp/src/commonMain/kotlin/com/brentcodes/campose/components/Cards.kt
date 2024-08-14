@@ -22,6 +22,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.ImageLoader
@@ -165,5 +166,43 @@ fun VideoCardYoutubeStyle(title: String, authorName: String, authorImage: String
 
         }
     }
+}
 
+@Composable
+fun VideoCard(title: String, summary: String, length: String, imageUrl: String, authorImage: String, authorName: String) {
+    Box(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp))) {
+        Column(modifier = Modifier.width(400.dp)) {
+            Box {
+                AsyncImage(
+                    model = imageUrl,
+                    contentDescription = "Placeholder",
+                    imageLoader = ImageLoader(context = PlatformContext.INSTANCE),
+                    modifier = Modifier.size(height = 240.dp, width = 400.dp).clip(RoundedCornerShape(topStart = 20.dp, topEnd = 20.dp)),
+                    contentScale = ContentScale.Crop
+                )
+                Text(
+                    text = length,
+                    color = Color.White,
+                    modifier = Modifier.padding(6.dp).background(Color.Black.copy(alpha= 0.6f), RoundedCornerShape(50)).align(Alignment.BottomStart).padding(8.dp),
+                )
+                Row(
+                    modifier = Modifier.padding(6.dp).background(Color.Black.copy(alpha= 0.6f), RoundedCornerShape(50)).align(Alignment.BottomEnd).padding(8.dp),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    AsyncImage(
+                        model = authorImage,
+                        contentDescription = "Placeholder",
+                        imageLoader = ImageLoader(context = PlatformContext.INSTANCE),
+                        modifier = Modifier.size(16.dp).clip(RoundedCornerShape(50)),
+                        contentScale = ContentScale.Crop
+                    )
+                    Text(text = authorName, color = Color.White)
+                }
+            }
+            Column(modifier = Modifier.padding(10.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+                Text(text = title, fontSize = 18.sp, color = Color.DarkGray, fontWeight = FontWeight.Bold, maxLines = 1, overflow = TextOverflow.Ellipsis)
+                Text(text = summary, color = Color.DarkGray, maxLines = 3, overflow = TextOverflow.Ellipsis)
+            }
+        }
+    }
 }
