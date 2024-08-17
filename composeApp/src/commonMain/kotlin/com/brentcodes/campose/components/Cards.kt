@@ -126,7 +126,6 @@ fun CardWithSideImage(title: String, content: String, imageUrl: String) {
             }
         }
     }
-
 }
 
 @Composable
@@ -163,7 +162,6 @@ fun VideoCardYoutubeStyle(title: String, authorName: String, authorImage: String
                     }
                 }
             }
-
         }
     }
 }
