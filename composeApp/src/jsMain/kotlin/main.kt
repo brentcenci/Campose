@@ -13,6 +13,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.CanvasBasedWindow
 import com.brentcodes.campose.components.Card
 import com.brentcodes.campose.components.CardWithSideImage
+import com.brentcodes.campose.components.Comment
+import com.brentcodes.campose.components.CommentStyleTwo
 import com.brentcodes.campose.components.ImageCard
 import com.brentcodes.campose.components.ImageCardWithBadges
 import com.brentcodes.campose.components.ImageCardWithButton
@@ -34,7 +36,7 @@ fun main() {
                     "cards" -> when (queryParams.get("component")) {
                         "basiccard" -> Card(
                             title = "This is a Title",
-                            content = "This is sample content, which should be shorxt and sweet."
+                            content = "This is sample content, which should be short and sweet."
                         )
                         "imagecard" -> ImageCard(
                             title = "This is a Title",
@@ -81,7 +83,7 @@ fun main() {
                         FlowColumn(verticalArrangement = Arrangement.spacedBy(20.dp), horizontalArrangement = Arrangement.spacedBy(20.dp)) {
                             Card(
                                 title = "This is a Title",
-                                content = "This is sample content, which should be shorxt and sweet."
+                                content = "This is sample content, which should be short and sweet."
                             )
                             ImageCard(
                                 title = "This is a Title",
@@ -123,6 +125,8 @@ fun main() {
                                 authorName = "CoolVideoGuy42",
                                 authorImage = "https://picsum.photos/100/100",
                             )
+                            Comment("https://picsum.photos/id/64/100/100")
+                            CommentStyleTwo(userImage = "https://picsum.photos/100/100", userName = "John Doe")
                         }
                     }
                 }

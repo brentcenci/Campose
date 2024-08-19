@@ -6,6 +6,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
+import com.brentcodes.campose.components.Comment
 import com.brentcodes.campose.components.MainToggle
 import java.awt.Dimension
 import com.brentcodes.campose.components.VideoCardYoutubeStyle
@@ -18,7 +19,7 @@ fun main() = application {
     ) {
         window.minimumSize = Dimension(350, 600)
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-            MainToggle()
+            Comment(userImage = "https://picsum.photos/100/100")
         }
     }
 }
