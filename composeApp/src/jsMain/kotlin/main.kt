@@ -19,6 +19,7 @@ import com.brentcodes.campose.components.ImageCard
 import com.brentcodes.campose.components.ImageCardWithBadges
 import com.brentcodes.campose.components.ImageCardWithButton
 import com.brentcodes.campose.components.StarRatingBar
+import com.brentcodes.campose.components.StarRatingReview
 import com.brentcodes.campose.components.VideoCard
 import com.brentcodes.campose.components.VideoCardYoutubeStyle
 import kotlinx.browser.window
@@ -129,6 +130,7 @@ fun main() {
                             Comment("https://picsum.photos/id/64/100/100")
                             CommentStyleTwo(userImage = "https://picsum.photos/100/100", userName = "John Doe")
                             StarRatingBar()
+                            StarRatingReview(title = "Leave a Review!", subtitle = "Let others know how your experience was with SuperCoolBusiness! Leave a quick review below.")
                         }
                     }
                 }

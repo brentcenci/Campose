@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -47,6 +48,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.semantics.Role.Companion.Button
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -132,17 +134,23 @@ fun CommentStyleTwo(userImage: String, userName: String) {
 }
 
 @Composable
-fun StarRatingBar(modifier: Modifier = Modifier) {
-    val ratingState = remember { mutableIntStateOf(0) }
-    Row(horizontalArrangement = Arrangement.SpaceBetween, modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp)) {
+fun StarRatingBar(
+    modifier: Modifier = Modifier,
+    size: Dp = 48.dp,
+    ratingState: MutableState<Int> = remember { mutableIntStateOf(1) },
+    imageVector: ImageVector = Icons.Default.Star,
+    selectedColor: Color = Color.Yellow,
+    unselectedColor: Color = Color.LightGray
+) {
+    Row(modifier = modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp)) {
         for (value in 1..5) {
             StarIcon(
-                size = 64.dp,
+                size = size,
                 ratingState = ratingState,
-                imageVector = Icons.Default.Star,
+                imageVector = imageVector,
                 ratingValue = value,
-                selectedColor = Color.Yellow,
-                unselectedColor = Color.LightGray
+                selectedColor = selectedColor,
+                unselectedColor = unselectedColor
             )
         }
     }
@@ -174,4 +182,39 @@ fun StarIcon(
             },
         tint = tint
     )
+}
+
+@Composable
+fun StarRatingReview(title: String, subtitle: String) {
+    val textValue = remember { mutableStateOf("") }
+    Box(modifier = Modifier.width(400.dp).background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp)) {
+        Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(20.dp)) {
+            Text(
+                text = title,
+                fontSize = 24.sp,
+                color = Color.DarkGray,
+                fontWeight = FontWeight.Bold
+            )
+            Text(
+                text = subtitle,
+                fontSize = 16.sp,
+                color = Color.DarkGray,
+                textAlign = TextAlign.Center
+            )
+            StarRatingBar(modifier = Modifier.align(Alignment.CenterHorizontally), selectedColor = Color.Blue)
+            OutlinedTextField(
+                value = textValue.value,
+                onValueChange = { textValue.value = it },
+                shape = RoundedCornerShape(20.dp),
+                placeholder = { Text("Leave a comment...") },
+                modifier = Modifier.fillMaxWidth(),
+            )
+            Row {
+                Spacer(modifier = Modifier.weight(1f))
+                Button(onClick = { }) {
+                    Text("Submit Review")
+                }
+            }
+        }
+    }
 }
