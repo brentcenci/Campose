@@ -158,7 +158,6 @@ fun StarRatingBar(
 
 @Composable
 fun StarIcon(
-    // 3. Parameters for StarIcon
     size: Dp,
     ratingState: MutableState<Int>,
     imageVector: ImageVector,
@@ -166,7 +165,6 @@ fun StarIcon(
     selectedColor: Color,
     unselectedColor: Color
 ) {
-    // 4. Color Animation
     val tint by animateColorAsState(
         targetValue = if (ratingValue <= ratingState.value) selectedColor else unselectedColor,
         label = ""
