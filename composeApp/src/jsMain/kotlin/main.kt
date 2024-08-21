@@ -83,6 +83,30 @@ fun main() {
                             authorImage = "https://picsum.photos/100/100",
                         )
                     }
+                    "reviews" -> when (queryParams.get("component")) {
+                        "comment" -> Comment("https://picsum.photos/id/64/100/100")
+                        "commentstyletwo" -> CommentStyleTwo(
+                            userImage = "https://picsum.photos/100/100",
+                            userName = "John Doe"
+                        )
+                        "starratingbar" -> StarRatingBar(
+                                modifier = Modifier
+                                    .background(
+                                        Color.White,
+                                        RoundedCornerShape(20.dp))
+                                    .padding(20.dp)
+                        )
+                        "starratingpostreview" -> StarRatingPostReview(
+                            title = "Leave a Review!",
+                            subtitle = "Let others know how your experience was with SuperCoolBusiness! Leave a quick review below."
+                        )
+                        "starratingreview" -> StarRatingReview(
+                            name = "Julian Manname",
+                            userImage = "https://picsum.photos/100/100",
+                            message = "I thoroughly enjoyed this product! The product was so clean and perfectly met my needs. Thanks, Business name!",
+                            rating = 3
+                        )
+                    }
                     else -> {
                         FlowColumn(verticalArrangement = Arrangement.spacedBy(20.dp), horizontalArrangement = Arrangement.spacedBy(20.dp)) {
                             Card(
@@ -130,10 +154,26 @@ fun main() {
                                 authorImage = "https://picsum.photos/100/100",
                             )
                             Comment("https://picsum.photos/id/64/100/100")
-                            CommentStyleTwo(userImage = "https://picsum.photos/100/100", userName = "John Doe")
-                            StarRatingBar(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
-                            StarRatingPostReview(title = "Leave a Review!", subtitle = "Let others know how your experience was with SuperCoolBusiness! Leave a quick review below.")
-                            StarRatingReview(name = "Julian Manname", userImage = "https://picsum.photos/100/100", message = "I thoroughly enjoyed this product! The product was so clean and perfectly met my needs. Thanks, Business name!", rating = 3)
+                            CommentStyleTwo(
+                                userImage = "https://picsum.photos/100/100",
+                                userName = "John Doe"
+                            )
+                            StarRatingBar(
+                                modifier = Modifier.background(
+                                    Color.White,
+                                    RoundedCornerShape(20.dp)
+                                ).padding(20.dp)
+                            )
+                            StarRatingPostReview(
+                                title = "Leave a Review!",
+                                subtitle = "Let others know how your experience was with SuperCoolBusiness! Leave a quick review below."
+                            )
+                            StarRatingReview(
+                                name = "Julian Manname",
+                                userImage = "https://picsum.photos/100/100",
+                                message = "I thoroughly enjoyed this product! The product was so clean and perfectly met my needs. Thanks, Business name!",
+                                rating = 3
+                            )
                         }
                     }
                 }
