@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowColumn
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -19,6 +20,7 @@ import com.brentcodes.campose.components.ImageCard
 import com.brentcodes.campose.components.ImageCardWithBadges
 import com.brentcodes.campose.components.ImageCardWithButton
 import com.brentcodes.campose.components.StarRatingBar
+import com.brentcodes.campose.components.StarRatingPostReview
 import com.brentcodes.campose.components.StarRatingReview
 import com.brentcodes.campose.components.VideoCard
 import com.brentcodes.campose.components.VideoCardYoutubeStyle
@@ -129,8 +131,9 @@ fun main() {
                             )
                             Comment("https://picsum.photos/id/64/100/100")
                             CommentStyleTwo(userImage = "https://picsum.photos/100/100", userName = "John Doe")
-                            StarRatingBar()
-                            StarRatingReview(title = "Leave a Review!", subtitle = "Let others know how your experience was with SuperCoolBusiness! Leave a quick review below.")
+                            StarRatingBar(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
+                            StarRatingPostReview(title = "Leave a Review!", subtitle = "Let others know how your experience was with SuperCoolBusiness! Leave a quick review below.")
+                            StarRatingReview(name = "Julian Manname", userImage = "https://picsum.photos/100/100", message = "I thoroughly enjoyed this product! The product was so clean and perfectly met my needs. Thanks, Business name!", rating = 3)
                         }
                     }
                 }

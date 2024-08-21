@@ -140,9 +140,10 @@ fun StarRatingBar(
     ratingState: MutableState<Int> = remember { mutableIntStateOf(1) },
     imageVector: ImageVector = Icons.Default.Star,
     selectedColor: Color = Color.Yellow,
-    unselectedColor: Color = Color.LightGray
+    unselectedColor: Color = Color.LightGray,
+    clickable: Boolean = true,
 ) {
-    Row(modifier = modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp)) {
+    Row(modifier = modifier) {
         for (value in 1..5) {
             StarIcon(
                 size = size,
@@ -150,7 +151,8 @@ fun StarRatingBar(
                 imageVector = imageVector,
                 ratingValue = value,
                 selectedColor = selectedColor,
-                unselectedColor = unselectedColor
+                unselectedColor = unselectedColor,
+                clickable = clickable
             )
         }
     }
@@ -163,7 +165,8 @@ fun StarIcon(
     imageVector: ImageVector,
     ratingValue: Int,
     selectedColor: Color,
-    unselectedColor: Color
+    unselectedColor: Color,
+    clickable: Boolean = true
 ) {
     val tint by animateColorAsState(
         targetValue = if (ratingValue <= ratingState.value) selectedColor else unselectedColor,
@@ -175,7 +178,7 @@ fun StarIcon(
         contentDescription = null,
         modifier = Modifier
             .size(size)
-            .clickable {
+            .clickable(enabled = clickable) {
                 ratingState.value = ratingValue
             },
         tint = tint
@@ -183,7 +186,7 @@ fun StarIcon(
 }
 
 @Composable
-fun StarRatingReview(title: String, subtitle: String) {
+fun StarRatingPostReview(title: String, subtitle: String) {
     val textValue = remember { mutableStateOf("") }
     Box(modifier = Modifier.width(400.dp).background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp)) {
         Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(20.dp)) {
@@ -215,4 +218,26 @@ fun StarRatingReview(title: String, subtitle: String) {
             }
         }
     }
+}
+
+@Composable
+fun StarRatingReview(name: String, userImage: String, rating: Int, message: String) {
+    val imageLoader = remember { ImageLoader(context = PlatformContext.INSTANCE) }
+    Box(modifier = Modifier.width(400.dp).background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp)) {
+        Row {
+            AsyncImage(
+                model = userImage,
+                contentDescription = "Placeholder",
+                imageLoader = imageLoader,
+                modifier = Modifier.size(32.dp).clip(RoundedCornerShape(50)),
+                contentScale = ContentScale.Crop
+            )
+            Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                Text(text = name, fontWeight = FontWeight.Bold, color = Color.DarkGray)
+                StarRatingBar(size = 24.dp, clickable = false, ratingState = remember { mutableIntStateOf(rating) }, selectedColor = Color(255,215,0))
+                Text(text = message, color = Color.DarkGray)
+            }
+        }
+    }
+
 }
