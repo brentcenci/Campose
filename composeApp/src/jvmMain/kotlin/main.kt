@@ -19,7 +19,7 @@ fun main() = application {
     ) {
         window.minimumSize = Dimension(350, 600)
         Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-            Comment(userImage = "https://picsum.photos/100/100")
+            MainToggle()
         }
     }
 }
