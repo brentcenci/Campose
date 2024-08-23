@@ -239,5 +239,4 @@ fun StarRatingReview(name: String, userImage: String, rating: Int, message: Stri
             }
         }
     }
-
 }
