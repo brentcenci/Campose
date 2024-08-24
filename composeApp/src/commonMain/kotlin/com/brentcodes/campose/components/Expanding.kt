@@ -12,24 +12,28 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 @Composable
 fun ExpandingHorizontal(modifier: Modifier = Modifier) {
-    val expandedIndex = mutableIntStateOf(0)
+    var expandedIndex by remember { mutableIntStateOf(-1) }
     Row {
         for (value in 0..4) {
-            ExpandingHorizontalItem(expanded = expandedIndex.value == value, onClick = { expandedIndex.value = value} , index = value)
+            val weight by animateFloatAsState(if (expandedIndex == value) 3f else 1f)
+            ExpandingHorizontalItem(expanded = expandedIndex == value, onClick = { expandedIndex =
+                if (expandedIndex == value) -1 else value } , index = value, modifier = Modifier.weight(weight))
         }
     }
 }
 
 @Composable
-fun ExpandingHorizontalItem(expanded: Boolean, onClick: () -> Unit, index: Int) {
+fun ExpandingHorizontalItem(expanded: Boolean, onClick: () -> Unit, index: Int, modifier: Modifier = Modifier) {
     val weight by animateFloatAsState(if (expanded) 3f else 1f)
-    Box() {
+    Box(modifier = modifier) {
         Column(modifier = Modifier.background(Color.LightGray).fillMaxWidth().clickable { onClick() }.padding(20.dp)) {
             Text("This is card $index")
             Text("Card $index expanded: $expanded")
