@@ -1,7 +1,9 @@
 package com.brentcodes.campose.components
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -41,19 +43,27 @@ fun ExpandingHorizontal(modifier: Modifier = Modifier, imageURL: String = "https
 
 @Composable
 fun ExpandingHorizontalItem(imageURL: String, expanded: Boolean, onClick: () -> Unit, index: Int, modifier: Modifier = Modifier) {
-    val weight by animateFloatAsState(if (expanded) 3f else 1f)
     val imageLoader = remember { ImageLoader(context = PlatformContext.INSTANCE) }
-    Box(modifier = modifier.height(200.dp).clip(RoundedCornerShape(20.dp))) {
-        AsyncImage(
-            model = imageURL,
-            contentDescription = "Placeholder",
-            imageLoader = imageLoader,
-            modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.Crop
-        )
-        Column(modifier = Modifier.fillMaxSize().clickable { onClick() }.padding(20.dp)) {
-            Text("This is card $index")
-            Text("Card $index expanded: $expanded")
+    Box(modifier = modifier.height(800.dp).padding(10.dp).clip(RoundedCornerShape(20.dp))) {
+        Row(modifier = Modifier.fillMaxSize()) {
+            Box(modifier = Modifier.weight(1f)) {
+                AsyncImage(
+                    model = imageURL,
+                    contentDescription = "Placeholder",
+                    imageLoader = imageLoader,
+                    modifier = Modifier.fillMaxSize(),
+                    contentScale = ContentScale.Crop
+                )
+                Column(modifier = Modifier.fillMaxSize().clickable { onClick() }.padding(20.dp)) {
+                    Text("This is card $index")
+                    Text("Card $index expanded: $expanded")
+                }
+            }
+            AnimatedVisibility(visible = expanded, modifier = Modifier.weight(1f)) {
+                if (expanded) Column(modifier = Modifier.fillMaxSize().background(Color.White, RoundedCornerShape(20.dp)).border(1.dp, Color.Black, RoundedCornerShape(20.dp))) {
+                    Text("this is the expanded column text")
+                }
+            }
         }
     }
 
