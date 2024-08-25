@@ -16,6 +16,7 @@ import com.brentcodes.campose.components.Card
 import com.brentcodes.campose.components.CardWithSideImage
 import com.brentcodes.campose.components.Comment
 import com.brentcodes.campose.components.CommentStyleTwo
+import com.brentcodes.campose.components.ExpandingHorizontal
 import com.brentcodes.campose.components.ImageCard
 import com.brentcodes.campose.components.ImageCardWithBadges
 import com.brentcodes.campose.components.ImageCardWithButton
@@ -108,7 +109,8 @@ fun main() {
                         )
                     }
                     else -> {
-                        FlowColumn(verticalArrangement = Arrangement.spacedBy(20.dp), horizontalArrangement = Arrangement.spacedBy(20.dp)) {
+                        ExpandingHorizontal()
+                        /*FlowColumn(verticalArrangement = Arrangement.spacedBy(20.dp), horizontalArrangement = Arrangement.spacedBy(20.dp)) {
                             Card(
                                 title = "This is a Title",
                                 content = "This is sample content, which should be short and sweet."
@@ -174,7 +176,7 @@ fun main() {
                                 message = "I thoroughly enjoyed this product! The product was so clean and perfectly met my needs. Thanks, Business name!",
                                 rating = 3
                             )
-                        }
+                        }*/
                     }
                 }
             }
