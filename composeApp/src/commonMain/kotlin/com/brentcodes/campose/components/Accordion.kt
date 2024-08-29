@@ -34,11 +34,7 @@ import androidx.compose.ui.unit.sp
 fun BasicAccordion(modifier: Modifier = Modifier, title: String = "Title Goes Here", content: String = "Lorem ipsum odor amet, consectetuer adipiscing elit. Finibus semper libero posuere vel ex volutpat mattis fusce laoreet. " +
         "Euismod ex ridiculus suspendisse euismod viverra. Congue non auctor blandit a habitant primis suspendisse vulputate. " +
         "Magnis parturient neque aliquet habitant praesent metus rhoncus. Massa parturient dis posuere malesuada ipsum nam feugiat varius. " +
-        "Id senectus aenean dis fames lobortis dui nunc.\n" + "\n" + "Sodales interdum ultricies morbi litora placerat curae. " +
-        "Netus libero suscipit facilisis egestas praesent. Interdum condimentum egestas dolor adipiscing suscipit suscipit tempor dis. " +
-        "Vestibulum ex conubia netus ut ipsum platea; congue euismod tellus. Per natoque nostra vulputate suspendisse blandit elit curae. " +
-        "Lacinia tincidunt semper montes volutpat posuere habitasse. Cursus ac montes integer; rhoncus ultrices donec sodales. " +
-        "Non tortor feugiat blandit posuere fringilla finibus parturient euismod lectus.") {
+        "Id senectus aenean dis fames lobortis dui nunc.") {
     val openState = remember { mutableStateOf(false) }
     val degrees = animateFloatAsState(if (openState.value) 180f else 0f)
     Column(

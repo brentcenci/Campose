@@ -113,6 +113,9 @@ fun main() {
                     "expanding" -> when (queryParams.get("component")) {
                         "expandinghorizontal" -> ExpandingHorizontal()
                     }
+                    "accordion" -> when (queryParams.get("component")) {
+                        "basicaccordion" -> BasicAccordion()
+                    }
                     else -> {
                         Column {
                             BasicAccordion()
