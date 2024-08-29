@@ -1,6 +1,7 @@
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowColumn
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.CanvasBasedWindow
+import com.brentcodes.campose.components.BasicAccordion
 import com.brentcodes.campose.components.Card
 import com.brentcodes.campose.components.CardWithSideImage
 import com.brentcodes.campose.components.Comment
@@ -108,8 +110,16 @@ fun main() {
                             rating = 3
                         )
                     }
+                    "expanding" -> when (queryParams.get("component")) {
+                        "expandinghorizontal" -> ExpandingHorizontal()
+                    }
                     else -> {
-                        ExpandingHorizontal()
+                        Column {
+                            BasicAccordion()
+                            BasicAccordion()
+                            BasicAccordion()
+                        }
+
                         /*FlowColumn(verticalArrangement = Arrangement.spacedBy(20.dp), horizontalArrangement = Arrangement.spacedBy(20.dp)) {
                             Card(
                                 title = "This is a Title",
