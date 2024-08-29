@@ -61,7 +61,6 @@ fun ExpandingHorizontal(
                     expandedIndex =
                         if (expandedIndex == value) -1 else value
                 },
-                index = value,
                 modifier = Modifier.weight(weight),
                 title = titles[value],
                 subtitle = subtitles[value],
@@ -75,7 +74,6 @@ fun ExpandingHorizontalItem(
     imageURL: String,
     expanded: Boolean,
     onClick: () -> Unit,
-    index: Int,
     modifier: Modifier = Modifier,
     title: String,
     subtitle: String,
