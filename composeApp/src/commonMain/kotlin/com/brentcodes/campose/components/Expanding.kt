@@ -31,6 +31,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.ImageLoader
@@ -43,12 +44,10 @@ fun ExpandingHorizontal(
     imageURL: String = "https://picsum.photos/800/800",
     titles: List<String> = listOf("First", "Second", "Third"),
     subtitles: List<String> = listOf("Live Freely", "Love Life", "Laugh Always"),
-    details: List<String> = listOf("This is some sample text where you can describe, in detail, the properties of the card this is attached to. " +
-            "You can fill this out so it will only display when the card is clicked.",
-        "This is some sample text where you can describe, in detail, the properties of the card this is attached to. " +
-                "You can fill this out so it will only display when the card is clicked.",
-        "This is some sample text where you can describe, in detail, the properties of the card this is attached to. " +
-                "You can fill this out so it will only display when the card is clicked.")
+    details: List<String> = listOf(
+        "This is some sample text where you can describe, in detail, the properties of the card this is attached to.",
+        "This is some sample text where you can describe, in detail, the properties of the card this is attached to.",
+        "This is some sample text where you can describe, in detail, the properties of the card this is attached to.")
 ) {
     var expandedIndex by remember { mutableIntStateOf(-1) }
     Row(modifier = modifier) {
@@ -127,6 +126,8 @@ fun ExpandingHorizontalItem(
                     )
                     Text(
                         details,
+                        maxLines = 8,
+                        overflow = TextOverflow.Ellipsis,
                         color = Color.White,
                         fontSize = 20.sp
                     )

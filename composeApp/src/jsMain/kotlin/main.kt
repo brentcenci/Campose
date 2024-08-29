@@ -118,9 +118,7 @@ fun main() {
                     }
                     else -> {
                         Column {
-                            BasicAccordion()
-                            BasicAccordion()
-                            BasicAccordion()
+                            ExpandingHorizontal()
                         }
 
                         /*FlowColumn(verticalArrangement = Arrangement.spacedBy(20.dp), horizontalArrangement = Arrangement.spacedBy(20.dp)) {
