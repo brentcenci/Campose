@@ -4,9 +4,14 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowColumn
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.Text
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -117,77 +122,97 @@ fun main() {
                         "basicaccordion" -> BasicAccordion()
                     }
                     else -> {
-                        Column {
-                            ExpandingHorizontal()
+                        val categoryType = remember { mutableStateOf("cards") }
+                        Row(modifier = Modifier.align(Alignment.TopCenter)) {
+                            for (category in listOf("cards", "reviews", "expanding", "accordion")) {
+                                Button(onClick = {
+                                    categoryType.value = category
+                                }) { Text(category) }
+                            }
                         }
-
-                        /*FlowColumn(verticalArrangement = Arrangement.spacedBy(20.dp), horizontalArrangement = Arrangement.spacedBy(20.dp)) {
-                            Card(
-                                title = "This is a Title",
-                                content = "This is sample content, which should be short and sweet."
-                            )
-                            ImageCard(
-                                title = "This is a Title",
-                                content = "This is the content of the image card, which is short and sweet",
-                                imageUrl = "https://picsum.photos/400/400"
-                            )
-                            ImageCardWithButton(
-                                title = "This is a Title",
-                                content = "This is the content of the image card, which is short and sweet",
-                                imageUrl = "https://picsum.photos/400/400",
-                                buttonText = "Button"
-                            )
-                            ImageCardWithBadges(
-                                title = "This is a Title",
-                                content = "This is the content of the image card, which is short and sweet",
-                                imageUrl = "https://picsum.photos/400/400",
-                                titleBadge = "SALE",
-                                contentBadges = listOf("Cotton", "Linen")
-                            )
-                            CardWithSideImage(
-                                title = "Short Title",
-                                content = "Short and sweet content section",
-                                imageUrl = "https://picsum.photos/400/400"
-                            )
-                            VideoCardYoutubeStyle(
-                                title = "Short Title",
-                                authorName = "PewDiePie",
-                                authorImage = "https://picsum.photos/100/100",
-                                views = "1.5M views ",
-                                time = "22 hours ago",
-                                length = "12:34",
-                                imageUrl = "https://picsum.photos/500/500"
-                            )
-                            VideoCard(
-                                title = "You won't believe what happens next",
-                                summary = "In this video, we try something crazy! Subscribe to make sure you never miss out!",
-                                length = "1:23",
-                                imageUrl = "https://picsum.photos/500/500",
-                                authorName = "CoolVideoGuy42",
-                                authorImage = "https://picsum.photos/100/100",
-                            )
-                            Comment("https://picsum.photos/id/64/100/100")
-                            CommentStyleTwo(
-                                userImage = "https://picsum.photos/100/100",
-                                userName = "John Doe"
-                            )
-                            StarRatingBar(
-                                modifier = Modifier.background(
-                                    Color.White,
-                                    RoundedCornerShape(20.dp)
-                                ).padding(20.dp)
-                            )
-                            StarRatingPostReview(
-                                title = "Leave a Review!",
-                                subtitle = "Let others know how your experience was with SuperCoolBusiness! Leave a quick review below."
-                            )
-                            StarRatingReview(
-                                name = "Julian Manname",
-                                userImage = "https://picsum.photos/100/100",
-                                message = "I thoroughly enjoyed this product! The product was so clean and perfectly met my needs. Thanks, Business name!",
-                                rating = 3
-                            )
-                        }*/
+                        FlowColumn(verticalArrangement = Arrangement.spacedBy(20.dp), horizontalArrangement = Arrangement.spacedBy(20.dp), modifier = Modifier.align(
+                            Alignment.Center)) {
+                            when (categoryType.value) {
+                                "cards" -> {
+                                    Card(
+                                        title = "This is a Title",
+                                        content = "This is sample content, which should be short and sweet."
+                                    )
+                                    ImageCard(
+                                        title = "This is a Title",
+                                        content = "This is the content of the image card, which is short and sweet",
+                                        imageUrl = "https://picsum.photos/400/400"
+                                    )
+                                    ImageCardWithButton(
+                                        title = "This is a Title",
+                                        content = "This is the content of the image card, which is short and sweet",
+                                        imageUrl = "https://picsum.photos/400/400",
+                                        buttonText = "Button"
+                                    )
+                                    ImageCardWithBadges(
+                                        title = "This is a Title",
+                                        content = "This is the content of the image card, which is short and sweet",
+                                        imageUrl = "https://picsum.photos/400/400",
+                                        titleBadge = "SALE",
+                                        contentBadges = listOf("Cotton", "Linen")
+                                    )
+                                    CardWithSideImage(
+                                        title = "Short Title",
+                                        content = "Short and sweet content section",
+                                        imageUrl = "https://picsum.photos/400/400"
+                                    )
+                                    VideoCardYoutubeStyle(
+                                        title = "Short Title",
+                                        authorName = "PewDiePie",
+                                        authorImage = "https://picsum.photos/100/100",
+                                        views = "1.5M views ",
+                                        time = "22 hours ago",
+                                        length = "12:34",
+                                        imageUrl = "https://picsum.photos/500/500"
+                                    )
+                                    VideoCard(
+                                        title = "You won't believe what happens next",
+                                        summary = "In this video, we try something crazy! Subscribe to make sure you never miss out!",
+                                        length = "1:23",
+                                        imageUrl = "https://picsum.photos/500/500",
+                                        authorName = "CoolVideoGuy42",
+                                        authorImage = "https://picsum.photos/100/100",
+                                    )
+                                }
+                                "reviews" -> {
+                                    Comment("https://picsum.photos/id/64/100/100")
+                                    CommentStyleTwo(
+                                        userImage = "https://picsum.photos/100/100",
+                                        userName = "John Doe"
+                                    )
+                                    StarRatingBar(
+                                        modifier = Modifier.background(
+                                            Color.White,
+                                            RoundedCornerShape(20.dp)
+                                        ).padding(20.dp)
+                                    )
+                                    StarRatingPostReview(
+                                        title = "Leave a Review!",
+                                        subtitle = "Let others know how your experience was with SuperCoolBusiness! Leave a quick review below."
+                                    )
+                                    StarRatingReview(
+                                        name = "Julian Manname",
+                                        userImage = "https://picsum.photos/100/100",
+                                        message = "I thoroughly enjoyed this product! The product was so clean and perfectly met my needs. Thanks, Business name!",
+                                        rating = 3
+                                    )
+                                }
+                                "expanding" -> {
+                                    ExpandingHorizontal()
+                                }
+                                "accordion" -> {
+                                    BasicAccordion()
+                                }
+                                else -> {
+                                    Text("whoops")
+                                }
+                            }
+                        }
                     }
                 }
             }
