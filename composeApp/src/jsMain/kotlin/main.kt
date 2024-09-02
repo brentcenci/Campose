@@ -242,6 +242,7 @@ fun main() {
                                 }
                                 "breadcrumbs" -> {
                                     BasicBreadcrumb()
+                                    BasicBreadcrumb(separator = "/")
                                 }
                                 else -> {
                                     Text("whoops")
