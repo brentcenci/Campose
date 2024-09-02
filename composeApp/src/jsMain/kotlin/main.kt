@@ -23,10 +23,12 @@ import com.brentcodes.campose.components.Card
 import com.brentcodes.campose.components.CardWithSideImage
 import com.brentcodes.campose.components.Comment
 import com.brentcodes.campose.components.CommentStyleTwo
+import com.brentcodes.campose.components.CustomToggle
 import com.brentcodes.campose.components.ExpandingHorizontal
 import com.brentcodes.campose.components.ImageCard
 import com.brentcodes.campose.components.ImageCardWithBadges
 import com.brentcodes.campose.components.ImageCardWithButton
+import com.brentcodes.campose.components.MainToggle
 import com.brentcodes.campose.components.StarRatingBar
 import com.brentcodes.campose.components.StarRatingPostReview
 import com.brentcodes.campose.components.StarRatingReview
@@ -124,7 +126,7 @@ fun main() {
                     else -> {
                         val categoryType = remember { mutableStateOf("cards") }
                         Row(modifier = Modifier.align(Alignment.TopCenter)) {
-                            for (category in listOf("cards", "reviews", "expanding", "accordion")) {
+                            for (category in listOf("cards", "reviews", "expanding", "accordion", "toggles")) {
                                 Button(onClick = {
                                     categoryType.value = category
                                 }) { Text(category) }
@@ -207,6 +209,9 @@ fun main() {
                                 }
                                 "accordion" -> {
                                     BasicAccordion()
+                                }
+                                "toggles" -> {
+                                    MainToggle()
                                 }
                                 else -> {
                                     Text("whoops")
