@@ -20,6 +20,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.CanvasBasedWindow
 import com.brentcodes.campose.components.BasicAccordion
+import com.brentcodes.campose.components.BasicBreadcrumb
 import com.brentcodes.campose.components.BasicToggle
 import com.brentcodes.campose.components.BasicToggleWithContent
 import com.brentcodes.campose.components.Card
@@ -152,7 +153,7 @@ fun main() {
                     else -> {
                         val categoryType = remember { mutableStateOf("cards") }
                         Row(modifier = Modifier.align(Alignment.TopCenter)) {
-                            for (category in listOf("cards", "reviews", "expanding", "accordion", "toggles")) {
+                            for (category in listOf("cards", "reviews", "expanding", "accordion", "toggles", "breadcrumbs")) {
                                 Button(onClick = {
                                     categoryType.value = category
                                 }) { Text(category) }
@@ -238,6 +239,9 @@ fun main() {
                                 }
                                 "toggles" -> {
                                     MainToggle()
+                                }
+                                "breadcrumbs" -> {
+                                    BasicBreadcrumb()
                                 }
                                 else -> {
                                     Text("whoops")
