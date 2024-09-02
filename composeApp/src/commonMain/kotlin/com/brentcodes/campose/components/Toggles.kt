@@ -43,29 +43,53 @@ import kotlin.math.roundToInt
 fun MainToggle(modifier: Modifier = Modifier) {
     val checked = remember { mutableStateOf(false) }
     Column {
-        IconToggleButton(checked = checked.value, onCheckedChange = { checked.value = !checked.value }) {
+        IconToggleButton(
+            checked = checked.value,
+            onCheckedChange = { checked.value = !checked.value }) {
             Icon(Icons.Default.Home, "Home Icon")
         }
         Switch(checked = checked.value, onCheckedChange = { checked.value = !checked.value })
-        CustomizedSwitch(checked = checked.value, onCheckedChange = {checked.value = !checked.value})
-        CustomToggle(state = checked.value, onCheckedChange = {checked.value = !checked.value})
-        CustomToggleWithContent(state = checked.value, onCheckedChange = { checked.value = !checked.value }, content = {
-            val txtColor = if (!checked.value) Color.White else Color.DarkGray
-            val txt = if (!checked.value) "OFF" else "ON"
-            Text(text = txt, color = txtColor, fontSize = 20.sp)
-        })
+        CustomizedSwitch(
+            checked = checked.value,
+            onCheckedChange = { checked.value = !checked.value })
+        CustomToggle(state = checked.value, onCheckedChange = { checked.value = !checked.value })
+        CustomToggleWithContent(
+            state = checked.value,
+            onCheckedChange = { checked.value = !checked.value },
+            content = {
+                val txtColor = if (!checked.value) Color.White else Color.DarkGray
+                val txt = if (!checked.value) "OFF" else "ON"
+                Text(text = txt, color = txtColor, fontSize = 20.sp)
+            })
+        BasicToggle()
+        val contentState = remember { mutableStateOf(false) }
+        BasicToggleWithContent(
+            state = contentState,
+            onCheckedChange = {contentState.value = !contentState.value},
+            content = {
+                val txtColor = if (!contentState.value) Color.White else Color.DarkGray
+                val txt = if (!contentState.value) "OFF" else "ON"
+                Text(text = txt, color = txtColor, fontSize = 20.sp)
+            })
     }
 }
 
 @Composable
-fun CustomToggle(modifier: Modifier = Modifier, height: Int = 70, width: Int = 140, state: Boolean, onCheckedChange: () -> Unit = {}) {
+fun CustomToggle(
+    modifier: Modifier = Modifier,
+    height: Int = 70,
+    width: Int = 140,
+    state: Boolean,
+    onCheckedChange: () -> Unit = {}
+) {
 
     val color by animateColorAsState(if (!state) Color.LightGray else Color(0xFF15d137))
     val thumbColor by animateColorAsState(if (!state) Color.DarkGray else Color.White)
     val border by animateColorAsState(if (!state) Color.DarkGray else Color.Transparent)
 
     val sizePx = with(LocalDensity.current) { (width - height).toDp().toPx() }
-    val offset = animateIntOffsetAsState(IntOffset(x = if (!state) 0 else sizePx.roundToInt(), 0)).value
+    val offset =
+        animateIntOffsetAsState(IntOffset(x = if (!state) 0 else sizePx.roundToInt(), 0)).value
 
     Row(
         modifier = modifier
@@ -90,14 +114,22 @@ fun CustomToggle(modifier: Modifier = Modifier, height: Int = 70, width: Int = 1
 }
 
 @Composable
-fun CustomToggleWithContent(modifier: Modifier = Modifier, height: Int = 70, width: Int = 140, state: Boolean, onCheckedChange: () -> Unit = {}, content : @Composable () -> Unit) {
+fun CustomToggleWithContent(
+    modifier: Modifier = Modifier,
+    height: Int = 70,
+    width: Int = 140,
+    state: Boolean,
+    onCheckedChange: () -> Unit = {},
+    content: @Composable () -> Unit
+) {
 
     val color by animateColorAsState(if (!state) Color.LightGray else Color(0xFF15d137))
     val thumbColor by animateColorAsState(if (!state) Color.DarkGray else Color.White)
     val border by animateColorAsState(if (!state) Color.DarkGray else Color.Transparent)
 
     val sizePx = with(LocalDensity.current) { (width - height).toDp().toPx() }
-    val offset = animateIntOffsetAsState(IntOffset(x = if (!state) 0 else sizePx.roundToInt(), 0)).value
+    val offset =
+        animateIntOffsetAsState(IntOffset(x = if (!state) 0 else sizePx.roundToInt(), 0)).value
 
     Row(
         modifier = modifier
@@ -127,5 +159,90 @@ fun CustomToggleWithContent(modifier: Modifier = Modifier, height: Int = 70, wid
 @Composable
 fun CustomizedSwitch(checked: Boolean, onCheckedChange: () -> Unit) {
     val text = if (checked) "ON" else "OFF"
-    Switch(checked = checked, onCheckedChange = { onCheckedChange() }, thumbContent = { Text(text, fontSize = 11.sp) } )
+    Switch(
+        checked = checked,
+        onCheckedChange = { onCheckedChange() },
+        thumbContent = { Text(text, fontSize = 11.sp) })
+}
+
+@Composable
+fun BasicToggle(
+    modifier: Modifier = Modifier,
+    height: Int = 70,
+    width: Int = 140,
+    state: MutableState<Boolean> = remember { mutableStateOf(false) },
+    onCheckedChange: () -> Unit = {state.value = !state.value}
+) {
+
+    val color by animateColorAsState(if (!state.value) Color.LightGray else Color(0xFF15d137))
+    val thumbColor by animateColorAsState(if (!state.value) Color.DarkGray else Color.White)
+    val border by animateColorAsState(if (!state.value) Color.DarkGray else Color.Transparent)
+
+    val sizePx = with(LocalDensity.current) { (width - height).toDp().toPx() }
+    val offset =
+        animateIntOffsetAsState(IntOffset(x = if (!state.value) 0 else sizePx.roundToInt(), 0)).value
+
+    Row(
+        modifier = modifier
+            .height(height.dp)
+            .width(width.dp)
+            .clip(RoundedCornerShape(height.dp))
+            .background(color)
+            .border(2.dp, border, RoundedCornerShape(height.dp))
+            .clickable {
+                onCheckedChange()
+            },
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Box(
+            modifier = Modifier
+                .offset { offset }
+                .size(height.dp)
+                .clip(RoundedCornerShape(50))
+                .background(thumbColor)
+        ) {}
+    }
+}
+
+@Composable
+fun BasicToggleWithContent(
+    modifier: Modifier = Modifier,
+    height: Int = 70,
+    width: Int = 140,
+    state: MutableState<Boolean> = remember { mutableStateOf(false) },
+    onCheckedChange: () -> Unit = {state.value = !state.value},
+    content: @Composable () -> Unit
+) {
+
+    val color by animateColorAsState(if (!state.value) Color.LightGray else Color(0xFF15d137))
+    val thumbColor by animateColorAsState(if (!state.value) Color.DarkGray else Color.White)
+    val border by animateColorAsState(if (!state.value) Color.DarkGray else Color.Transparent)
+
+    val sizePx = with(LocalDensity.current) { (width - height).toDp().toPx() }
+    val offset =
+        animateIntOffsetAsState(IntOffset(x = if (!state.value) 0 else sizePx.roundToInt(), 0)).value
+
+    Row(
+        modifier = modifier
+            .height(height.dp)
+            .width(width.dp)
+            .clip(RoundedCornerShape(height.dp))
+            .background(color)
+            .border(2.dp, border, RoundedCornerShape(height.dp))
+            .clickable {
+                onCheckedChange()
+            },
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Box(
+            modifier = Modifier
+                .offset { offset }
+                .size(height.dp)
+                .clip(RoundedCornerShape(50))
+                .background(thumbColor),
+            contentAlignment = Alignment.Center
+        ) {
+            content()
+        }
+    }
 }

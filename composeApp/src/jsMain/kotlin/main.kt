@@ -17,8 +17,11 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.CanvasBasedWindow
 import com.brentcodes.campose.components.BasicAccordion
+import com.brentcodes.campose.components.BasicToggle
+import com.brentcodes.campose.components.BasicToggleWithContent
 import com.brentcodes.campose.components.Card
 import com.brentcodes.campose.components.CardWithSideImage
 import com.brentcodes.campose.components.Comment
@@ -122,6 +125,29 @@ fun main() {
                     }
                     "accordion" -> when (queryParams.get("component")) {
                         "basicaccordion" -> BasicAccordion()
+                    }
+                    "toggles" -> when (queryParams.get("component")) {
+                        "basictoggle" -> BasicToggle(modifier = Modifier
+                            .background(
+                                Color.White,
+                                RoundedCornerShape(20.dp))
+                            .padding(20.dp))
+                        "basictogglewithcontent" -> {
+                            val contentState = remember { mutableStateOf(false) }
+                            BasicToggleWithContent(
+                                modifier = Modifier
+                                    .background(
+                                        Color.White,
+                                        RoundedCornerShape(20.dp))
+                                    .padding(20.dp),
+                                state = contentState,
+                                onCheckedChange = {contentState.value = !contentState.value},
+                                content = {
+                                    val txtColor = if (!contentState.value) Color.White else Color.DarkGray
+                                    val txt = if (!contentState.value) "OFF" else "ON"
+                                    Text(text = txt, color = txtColor, fontSize = 20.sp)
+                                })
+                        }
                     }
                     else -> {
                         val categoryType = remember { mutableStateOf("cards") }
