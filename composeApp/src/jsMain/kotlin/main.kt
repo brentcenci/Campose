@@ -150,6 +150,14 @@ fun main() {
                                 })
                         }
                     }
+                    "breadcrumbs" -> when (queryParams.get("component")) {
+                        "basicbreadcrumb" -> {
+                            Column(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp), verticalArrangement = Arrangement.spacedBy(20.dp)) {
+                                BasicBreadcrumb()
+                                BasicBreadcrumb(separator = "/", sections = listOf("Home", "Clothing", "Men's Shirts"))
+                            }
+                        }
+                    }
                     else -> {
                         val categoryType = remember { mutableStateOf("cards") }
                         Row(modifier = Modifier.align(Alignment.TopCenter)) {
@@ -241,8 +249,11 @@ fun main() {
                                     MainToggle()
                                 }
                                 "breadcrumbs" -> {
-                                    BasicBreadcrumb()
-                                    BasicBreadcrumb(separator = "/")
+                                    Column(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp), verticalArrangement = Arrangement.spacedBy(20.dp)) {
+                                        BasicBreadcrumb()
+                                        BasicBreadcrumb(separator = "/", sections = listOf("Home", "Clothing", "Men's Shirts"))
+                                    }
+
                                 }
                                 else -> {
                                     Text("whoops")
