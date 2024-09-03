@@ -25,7 +25,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun BasicBreadcrumb(modifier: Modifier = Modifier, separator: String = "»", sections: List<String> = listOf("Cart", "Billing", "Shipping", "Payment")) {
     val current = remember { mutableIntStateOf(2) }
-    Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+    Row(modifier = modifier, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
         sections.forEachIndexed { index, section ->
             Text(
                 text = section,
