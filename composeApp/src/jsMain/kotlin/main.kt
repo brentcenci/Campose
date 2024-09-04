@@ -326,7 +326,25 @@ fun main() {
 
                                 }
                                 "carousels" -> {
-                                    BasicCarouselPager()
+                                    val scrollState = rememberScrollState()
+                                    val coroutineScope = rememberCoroutineScope()
+                                    Row(
+                                        modifier = Modifier.horizontalScroll(state = scrollState).pointerInput(Unit) {
+                                            detectHorizontalDragGestures { _, dragAmount ->
+                                                coroutineScope.launch { scrollState.scrollBy(-dragAmount) }
+                                            }
+                                        }
+                                    ) {
+                                        for (index in 1..30) {
+                                            Box(
+                                                modifier = Modifier.padding(10.dp).size(100.dp)
+                                                    .background(Color.Blue)
+                                            ) {
+                                                Text(text = "$index")
+                                            }
+                                        }
+
+                                    }
                                 }
                                 else -> {
                                     Text("whoops")
