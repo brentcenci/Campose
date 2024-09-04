@@ -1,4 +1,10 @@
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.Orientation
+import androidx.compose.foundation.gestures.detectHorizontalDragGestures
+import androidx.compose.foundation.gestures.draggable
+import androidx.compose.foundation.gestures.rememberDraggableState
+import androidx.compose.foundation.gestures.scrollBy
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -7,16 +13,22 @@ import androidx.compose.foundation.layout.FlowColumn
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.CanvasBasedWindow
@@ -42,6 +54,7 @@ import com.brentcodes.campose.components.StarRatingReview
 import com.brentcodes.campose.components.VideoCard
 import com.brentcodes.campose.components.VideoCardYoutubeStyle
 import kotlinx.browser.window
+import kotlinx.coroutines.launch
 import org.jetbrains.skiko.wasm.onWasmReady
 import org.w3c.dom.url.URLSearchParams
 
@@ -50,7 +63,10 @@ fun main() {
 
     onWasmReady {
         CanvasBasedWindow("Campose") {
-            Box(modifier = Modifier.fillMaxSize().background(Color.LightGray.copy(alpha = 0.4f)).padding(20.dp), contentAlignment = Alignment.Center) {
+            Box(
+                modifier = Modifier.fillMaxSize().background(Color.LightGray.copy(alpha = 0.4f))
+                    .padding(20.dp), contentAlignment = Alignment.Center
+            ) {
                 val queryParams = URLSearchParams(window.location.search)
                 when (queryParams.get("category")) {
 
@@ -59,17 +75,20 @@ fun main() {
                             title = "This is a Title",
                             content = "This is sample content, which should be short and sweet."
                         )
+
                         "imagecard" -> ImageCard(
                             title = "This is a Title",
                             content = "This is the content of the image card, which is short and sweet",
                             imageUrl = "https://picsum.photos/400/400"
                         )
+
                         "imagecardwithbutton" -> ImageCardWithButton(
                             title = "This is a Title",
                             content = "This is the content of the image card, which is short and sweet",
                             imageUrl = "https://picsum.photos/400/400",
                             buttonText = "Button"
                         )
+
                         "imagecardwithbadges" -> ImageCardWithBadges(
                             title = "This is a Title",
                             content = "This is the content of the image card, which is short and sweet",
@@ -77,11 +96,13 @@ fun main() {
                             titleBadge = "SALE",
                             contentBadges = listOf("Cotton", "Linen")
                         )
+
                         "cardwithsideimage" -> CardWithSideImage(
                             title = "Short Title",
                             content = "Short and sweet content section",
                             imageUrl = "https://picsum.photos/400/400"
                         )
+
                         "videocardyoutubestyle" -> VideoCardYoutubeStyle(
                             title = "Short Title",
                             authorName = "PewDiePie",
@@ -91,6 +112,7 @@ fun main() {
                             length = "12:34",
                             imageUrl = "https://picsum.photos/500/500"
                         )
+
                         "videocard" -> VideoCard(
                             title = "You won't believe what happens next",
                             summary = "In this video, we try something crazy! Subscribe to make sure you never miss out!",
@@ -100,23 +122,28 @@ fun main() {
                             authorImage = "https://picsum.photos/100/100",
                         )
                     }
+
                     "reviews" -> when (queryParams.get("component")) {
                         "comment" -> Comment("https://picsum.photos/id/64/100/100")
                         "commentstyletwo" -> CommentStyleTwo(
                             userImage = "https://picsum.photos/100/100",
                             userName = "John Doe"
                         )
+
                         "starratingbar" -> StarRatingBar(
-                                modifier = Modifier
-                                    .background(
-                                        Color.White,
-                                        RoundedCornerShape(20.dp))
-                                    .padding(20.dp)
+                            modifier = Modifier
+                                .background(
+                                    Color.White,
+                                    RoundedCornerShape(20.dp)
+                                )
+                                .padding(20.dp)
                         )
+
                         "starratingpostreview" -> StarRatingPostReview(
                             title = "Leave a Review!",
                             subtitle = "Let others know how your experience was with SuperCoolBusiness! Leave a quick review below."
                         )
+
                         "starratingreview" -> StarRatingReview(
                             name = "Julian Manname",
                             userImage = "https://picsum.photos/100/100",
@@ -124,49 +151,85 @@ fun main() {
                             rating = 3
                         )
                     }
+
                     "expanding" -> when (queryParams.get("component")) {
                         "expandinghorizontal" -> ExpandingHorizontal()
                     }
+
                     "accordion" -> when (queryParams.get("component")) {
                         "basicaccordion" -> BasicAccordion()
                     }
+
                     "toggles" -> when (queryParams.get("component")) {
-                        "basictoggle" -> BasicToggle(modifier = Modifier
-                            .background(
-                                Color.White,
-                                RoundedCornerShape(20.dp))
-                            .padding(20.dp))
+                        "basictoggle" -> BasicToggle(
+                            modifier = Modifier
+                                .background(
+                                    Color.White,
+                                    RoundedCornerShape(20.dp)
+                                )
+                                .padding(20.dp)
+                        )
+
                         "basictogglewithcontent" -> {
                             val contentState = remember { mutableStateOf(false) }
                             BasicToggleWithContent(
                                 modifier = Modifier
                                     .background(
                                         Color.White,
-                                        RoundedCornerShape(20.dp))
+                                        RoundedCornerShape(20.dp)
+                                    )
                                     .padding(20.dp),
                                 state = contentState,
-                                onCheckedChange = {contentState.value = !contentState.value},
+                                onCheckedChange = { contentState.value = !contentState.value },
                                 content = {
-                                    val txtColor = if (!contentState.value) Color.White else Color.DarkGray
+                                    val txtColor =
+                                        if (!contentState.value) Color.White else Color.DarkGray
                                     val txt = if (!contentState.value) "OFF" else "ON"
                                     Text(text = txt, color = txtColor, fontSize = 20.sp)
                                 })
                         }
                     }
+
                     "breadcrumbs" -> when (queryParams.get("component")) {
                         "basicbreadcrumb" -> {
-                            Column(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp), verticalArrangement = Arrangement.spacedBy(20.dp)) {
+                            Column(
+                                modifier = Modifier.background(
+                                    Color.White,
+                                    RoundedCornerShape(20.dp)
+                                ).padding(20.dp), verticalArrangement = Arrangement.spacedBy(20.dp)
+                            ) {
                                 BasicBreadcrumb()
-                                BasicBreadcrumb(separator = "/", sections = listOf("Home", "Clothing", "Men's Shirts"))
+                                BasicBreadcrumb(
+                                    separator = "/",
+                                    sections = listOf("Home", "Clothing", "Men's Shirts")
+                                )
                             }
                         }
                     }
-                    else -> {
-                        Surface {
-                            BasicCarousel()
-                        }
 
-                        /*val categoryType = remember { mutableStateOf("cards") }
+                    else -> {
+                        /*val scrollState = rememberLazyListState()
+                        val coroutineScope = rememberCoroutineScope()
+                        LazyRow(
+                            state = scrollState,
+                            modifier = Modifier.pointerInput(Unit) {
+                                detectHorizontalDragGestures { _, dragAmount ->
+                                    coroutineScope.launch { scrollState.scrollBy(-dragAmount) }
+                                }
+                            }
+                        ) {
+                            items(30) { index ->
+                                Box(
+                                    modifier = Modifier.padding(10.dp).size(100.dp)
+                                        .background(Color.Blue)
+                                ) {
+                                    Text(text = "$index")
+                                }
+                            }
+
+                        }*/
+
+                        val categoryType = remember { mutableStateOf("cards") }
                         Row(modifier = Modifier.align(Alignment.TopCenter)) {
                             for (category in listOf("cards", "reviews", "expanding", "accordion", "toggles", "breadcrumbs", "carousels")) {
                                 Button(onClick = {
@@ -269,7 +332,7 @@ fun main() {
                                     Text("whoops")
                                 }
                             }
-                        }*/
+                        }
                     }
                 }
             }
