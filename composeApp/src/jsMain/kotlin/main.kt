@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -21,6 +22,8 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.CanvasBasedWindow
 import com.brentcodes.campose.components.BasicAccordion
 import com.brentcodes.campose.components.BasicBreadcrumb
+import com.brentcodes.campose.components.BasicCarousel
+import com.brentcodes.campose.components.BasicCarouselPager
 import com.brentcodes.campose.components.BasicToggle
 import com.brentcodes.campose.components.BasicToggleWithContent
 import com.brentcodes.campose.components.Card
@@ -159,9 +162,13 @@ fun main() {
                         }
                     }
                     else -> {
-                        val categoryType = remember { mutableStateOf("cards") }
+                        Surface {
+                            BasicCarousel()
+                        }
+
+                        /*val categoryType = remember { mutableStateOf("cards") }
                         Row(modifier = Modifier.align(Alignment.TopCenter)) {
-                            for (category in listOf("cards", "reviews", "expanding", "accordion", "toggles", "breadcrumbs")) {
+                            for (category in listOf("cards", "reviews", "expanding", "accordion", "toggles", "breadcrumbs", "carousels")) {
                                 Button(onClick = {
                                     categoryType.value = category
                                 }) { Text(category) }
@@ -255,11 +262,14 @@ fun main() {
                                     }
 
                                 }
+                                "carousels" -> {
+                                    BasicCarouselPager()
+                                }
                                 else -> {
                                     Text("whoops")
                                 }
                             }
-                        }
+                        }*/
                     }
                 }
             }
