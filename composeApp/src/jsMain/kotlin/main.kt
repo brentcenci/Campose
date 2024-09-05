@@ -36,6 +36,7 @@ import com.brentcodes.campose.components.BasicAccordion
 import com.brentcodes.campose.components.BasicBreadcrumb
 import com.brentcodes.campose.components.BasicCarousel
 import com.brentcodes.campose.components.BasicCarouselPager
+import com.brentcodes.campose.components.BasicSearchBar
 import com.brentcodes.campose.components.BasicToggle
 import com.brentcodes.campose.components.BasicToggleWithContent
 import com.brentcodes.campose.components.Card
@@ -48,6 +49,8 @@ import com.brentcodes.campose.components.ImageCard
 import com.brentcodes.campose.components.ImageCardWithBadges
 import com.brentcodes.campose.components.ImageCardWithButton
 import com.brentcodes.campose.components.MainToggle
+import com.brentcodes.campose.components.RoundedSearchBar
+import com.brentcodes.campose.components.SearchBarWithSuggestions
 import com.brentcodes.campose.components.StarRatingBar
 import com.brentcodes.campose.components.StarRatingPostReview
 import com.brentcodes.campose.components.StarRatingReview
@@ -206,32 +209,16 @@ fun main() {
                             }
                         }
                     }
+                    "searchbars" -> when (queryParams.get("component")) {
+                        "basicsearchbar" -> BasicSearchBar(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
+                        "roundedsearchbar" -> RoundedSearchBar(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
+                        "searchbarwithsuggestions" -> SearchBarWithSuggestions(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
+                    }
 
                     else -> {
-                        /*val scrollState = rememberLazyListState()
-                        val coroutineScope = rememberCoroutineScope()
-                        LazyRow(
-                            state = scrollState,
-                            modifier = Modifier.pointerInput(Unit) {
-                                detectHorizontalDragGestures { _, dragAmount ->
-                                    coroutineScope.launch { scrollState.scrollBy(-dragAmount) }
-                                }
-                            }
-                        ) {
-                            items(30) { index ->
-                                Box(
-                                    modifier = Modifier.padding(10.dp).size(100.dp)
-                                        .background(Color.Blue)
-                                ) {
-                                    Text(text = "$index")
-                                }
-                            }
-
-                        }*/
-
                         val categoryType = remember { mutableStateOf("cards") }
                         Row(modifier = Modifier.align(Alignment.TopCenter)) {
-                            for (category in listOf("cards", "reviews", "expanding", "accordion", "toggles", "breadcrumbs", "carousels")) {
+                            for (category in listOf("cards", "reviews", "expanding", "accordion", "toggles", "breadcrumbs", "carousels", "searchbars")) {
                                 Button(onClick = {
                                     categoryType.value = category
                                 }) { Text(category) }
@@ -345,6 +332,11 @@ fun main() {
                                         }
 
                                     }
+                                }
+                                "searchbars" -> {
+                                    BasicSearchBar(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
+                                    RoundedSearchBar(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
+                                    SearchBarWithSuggestions(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
                                 }
                                 else -> {
                                     Text("whoops")
