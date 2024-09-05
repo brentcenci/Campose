@@ -214,6 +214,7 @@ fun main() {
                         "basicsearchbar" -> BasicSearchBar(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
                         "roundedsearchbar" -> RoundedSearchBar(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
                         "searchbarwithsuggestions" -> SearchBarWithSuggestions(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
+                        "searchbarwithbutton" -> SearchBarWithButton(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
                     }
 
                     else -> {
