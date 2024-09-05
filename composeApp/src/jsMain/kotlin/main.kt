@@ -50,6 +50,7 @@ import com.brentcodes.campose.components.ImageCardWithBadges
 import com.brentcodes.campose.components.ImageCardWithButton
 import com.brentcodes.campose.components.MainToggle
 import com.brentcodes.campose.components.RoundedSearchBar
+import com.brentcodes.campose.components.SearchBarWithButton
 import com.brentcodes.campose.components.SearchBarWithSuggestions
 import com.brentcodes.campose.components.StarRatingBar
 import com.brentcodes.campose.components.StarRatingPostReview
@@ -337,6 +338,7 @@ fun main() {
                                     BasicSearchBar(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
                                     RoundedSearchBar(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
                                     SearchBarWithSuggestions(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
+                                    SearchBarWithButton(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
                                 }
                                 else -> {
                                     Text("whoops")
