@@ -38,6 +38,7 @@ import com.brentcodes.campose.components.BasicCarousel
 import com.brentcodes.campose.components.BasicCarouselPager
 import com.brentcodes.campose.components.BasicSearchBar
 import com.brentcodes.campose.components.BasicSignin
+import com.brentcodes.campose.components.BasicSignup
 import com.brentcodes.campose.components.BasicToggle
 import com.brentcodes.campose.components.BasicToggleWithContent
 import com.brentcodes.campose.components.Card
@@ -348,6 +349,7 @@ fun main() {
                                     UsernameField(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
                                     PasswordField(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
                                     BasicSignin(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
+                                    BasicSignup(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
                                 }
                                 else -> {
                                     Text("whoops")
