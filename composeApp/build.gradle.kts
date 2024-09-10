@@ -27,8 +27,6 @@ kotlin {
             implementation(compose.runtime)
             implementation(compose.foundation)
             implementation(compose.material3)
-            implementation(compose.materialIconsExtended)
-/*            implementation("androidx.compose.material:material-icons-extended:1.3.1")*/
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
             implementation(libs.coil)

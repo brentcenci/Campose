@@ -220,6 +220,12 @@ fun main() {
                         "searchbarwithsuggestions" -> SearchBarWithSuggestions(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
                         "searchbarwithbutton" -> SearchBarWithButton(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
                     }
+                    "authentication" -> when (queryParams.get("component")) {
+                        "usernamefield" -> UsernameField(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
+                        "passwordfield" -> PasswordField(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
+                        "basicsignin" -> BasicSignin(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
+                        "basicsignup" -> BasicSignup(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
+                    }
 
                     else -> {
                         val categoryType = remember { mutableStateOf("cards") }

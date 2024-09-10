@@ -6,12 +6,9 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowDropDown
-import androidx.compose.material.icons.filled.Visibility
-import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -24,12 +21,15 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import campose.composeapp.generated.resources.Res
+import campose.composeapp.generated.resources.visible
+import campose.composeapp.generated.resources.visibleoff
+import org.jetbrains.compose.resources.painterResource
 
 @Composable
 fun UsernameField(modifier: Modifier = Modifier) {
@@ -60,7 +60,7 @@ fun PasswordField(modifier: Modifier = Modifier) {
             placeholder = {Text("Password...")},
             trailingIcon = {
                 IconButton(onClick = { visiblePassword.value = !visiblePassword.value }) {
-                    if (visiblePassword.value) Icon(Icons.Default.Visibility, "Eye Icon") else Icon(Icons.Default.VisibilityOff, "Eye Icon")
+                    if (visiblePassword.value) Icon(painterResource(Res.drawable.visible), "Eye Icon", modifier = Modifier.size(24.dp)) else Icon(painterResource(Res.drawable.visibleoff), "Eye Icon", modifier = Modifier.size(24.dp))
                 }
             },
             visualTransformation = if (!visiblePassword.value) PasswordVisualTransformation() else VisualTransformation.None,
@@ -99,7 +99,7 @@ fun BasicSignin(modifier: Modifier = Modifier, title: String = "Sign in", subtit
             placeholder = {Text("Password...")},
             trailingIcon = {
                 IconButton(onClick = { visiblePassword.value = !visiblePassword.value }) {
-                    if (visiblePassword.value) Icon(Icons.Default.Visibility, "Eye Icon") else Icon(Icons.Default.VisibilityOff, "Eye Icon")
+                    if (visiblePassword.value) Icon(painterResource(Res.drawable.visible), "Eye Icon", modifier = Modifier.size(24.dp)) else Icon(painterResource(Res.drawable.visibleoff), "Eye Icon", modifier = Modifier.size(24.dp))
                 }
             },
             visualTransformation = if (!visiblePassword.value) PasswordVisualTransformation() else VisualTransformation.None,
@@ -154,7 +154,7 @@ fun BasicSignup(modifier: Modifier = Modifier, title: String = "Sign Up", subtit
             placeholder = {Text("Password...")},
             trailingIcon = {
                 IconButton(onClick = { visiblePassword.value = !visiblePassword.value }) {
-                    if (visiblePassword.value) Icon(Icons.Default.Visibility, "Eye Icon") else Icon(Icons.Default.VisibilityOff, "Eye Icon")
+                    if (visiblePassword.value) Icon(painterResource(Res.drawable.visible), "Eye Icon", modifier = Modifier.size(24.dp)) else Icon(painterResource(Res.drawable.visibleoff), "Eye Icon", modifier = Modifier.size(24.dp))
                 }
             },
             visualTransformation = if (!visiblePassword.value) PasswordVisualTransformation() else VisualTransformation.None,
@@ -170,7 +170,7 @@ fun BasicSignup(modifier: Modifier = Modifier, title: String = "Sign Up", subtit
             placeholder = {Text("Confirm Password...")},
             trailingIcon = {
                 IconButton(onClick = { visiblePassword.value = !visiblePassword.value }) {
-                    if (visiblePassword.value) Icon(Icons.Default.Visibility, "Eye Icon") else Icon(Icons.Default.VisibilityOff, "Eye Icon")
+                    if (visiblePassword.value) Icon(painterResource(Res.drawable.visible), "Eye Icon", modifier = Modifier.size(24.dp)) else Icon(painterResource(Res.drawable.visibleoff), "Eye Icon", modifier = Modifier.size(24.dp))
                 }
             },
             visualTransformation = if (!visiblePassword.value) PasswordVisualTransformation() else VisualTransformation.None,
