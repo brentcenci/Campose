@@ -1,10 +1,13 @@
 package com.brentcodes.campose.components
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.Visibility
@@ -22,27 +25,67 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
+fun UsernameField(modifier: Modifier = Modifier) {
+    var usernameValue by remember { mutableStateOf("") }
+    Column(modifier = modifier.width(300.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+        Text("Username", color = Color.DarkGray)
+        OutlinedTextField(
+            value = usernameValue,
+            onValueChange = {usernameValue = it},
+            placeholder = {Text("Username...")},
+            modifier = Modifier.fillMaxWidth(),
+            shape = RoundedCornerShape(10.dp)
+        )
+    }
+}
+
+@Composable
+fun PasswordField(modifier: Modifier = Modifier) {
+    var passwordValue by remember { mutableStateOf("") }
+    val visiblePassword = remember { mutableStateOf(false) }
+    Column(modifier = modifier.width(300.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+        Text("Password", color = Color.DarkGray)
+        OutlinedTextField(
+            value = passwordValue,
+            onValueChange = {passwordValue = it},
+            placeholder = {Text("Password...")},
+            trailingIcon = {
+                IconButton(onClick = { visiblePassword.value = !visiblePassword.value }) {
+                    if (visiblePassword.value) Icon(Icons.Default.Visibility, "Eye Icon") else Icon(Icons.Default.VisibilityOff, "Eye Icon")
+                }
+            },
+            visualTransformation = if (!visiblePassword.value) PasswordVisualTransformation() else VisualTransformation.None,
+            modifier = Modifier.fillMaxWidth(),
+            shape = RoundedCornerShape(10.dp)
+        )
+    }
+}
+
+@Composable
 fun BasicSignin(modifier: Modifier = Modifier, title: String = "Sign in", subtitle: String = "Enter your details to sign into your account") {
     var usernameValue by remember { mutableStateOf("") }
     var passwordValue by remember { mutableStateOf("") }
     val visiblePassword = remember { mutableStateOf(false) }
-    Column(modifier = modifier.width(300.dp)) {
-        Text(text = title, fontSize = 30.sp, color = Color.DarkGray)
-        Text(text = subtitle, color = Color.LightGray)
+    Column(modifier = modifier.width(300.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
+        Text(text = title, fontSize = 30.sp, fontWeight = FontWeight.Bold, color = Color.DarkGray)
+        Text(text = subtitle, fontSize = 18.sp, color = Color.DarkGray)
 
-        Spacer(modifier = Modifier.height(10.dp))
+        Spacer(modifier = Modifier.height(20.dp))
 
         Text("Username", color = Color.DarkGray)
         OutlinedTextField(
             value = usernameValue,
             onValueChange = {usernameValue = it},
-            placeholder = {Text("Username...")}
+            placeholder = {Text("Username...")},
+            modifier = Modifier.fillMaxWidth(),
+            shape = RoundedCornerShape(10.dp)
         )
 
         Spacer(modifier = Modifier.height(10.dp))
@@ -57,13 +100,17 @@ fun BasicSignin(modifier: Modifier = Modifier, title: String = "Sign in", subtit
                     if (visiblePassword.value) Icon(Icons.Default.Visibility, "Eye Icon") else Icon(Icons.Default.VisibilityOff, "Eye Icon")
                 }
             },
-            visualTransformation = if (!visiblePassword.value) PasswordVisualTransformation() else VisualTransformation.None
+            visualTransformation = if (!visiblePassword.value) PasswordVisualTransformation() else VisualTransformation.None,
+            modifier = Modifier.fillMaxWidth(),
+            shape = RoundedCornerShape(10.dp)
         )
 
         Spacer(modifier = Modifier.height(20.dp))
 
         Button(
-            onClick = { }
+            onClick = { },
+            modifier = Modifier.fillMaxWidth(),
+            shape = RoundedCornerShape(10.dp)
         ) {
             Text("Sign In")
         }
