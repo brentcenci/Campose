@@ -36,6 +36,7 @@ import com.brentcodes.campose.components.BasicAccordion
 import com.brentcodes.campose.components.BasicBreadcrumb
 import com.brentcodes.campose.components.BasicCarousel
 import com.brentcodes.campose.components.BasicCarouselPager
+import com.brentcodes.campose.components.BasicMusicControls
 import com.brentcodes.campose.components.BasicSearchBar
 import com.brentcodes.campose.components.BasicSignin
 import com.brentcodes.campose.components.BasicSignup
@@ -230,7 +231,7 @@ fun main() {
                     else -> {
                         val categoryType = remember { mutableStateOf("cards") }
                         Row(modifier = Modifier.align(Alignment.TopCenter)) {
-                            for (category in listOf("cards", "reviews", "expanding", "accordion", "toggles", "breadcrumbs", "carousels", "searchbars", "authentication")) {
+                            for (category in listOf("cards", "reviews", "expanding", "accordion", "toggles", "breadcrumbs", "carousels", "searchbars", "authentication", "mediacontrols")) {
                                 Button(onClick = {
                                     categoryType.value = category
                                 }) { Text(category) }
@@ -356,6 +357,9 @@ fun main() {
                                     PasswordField(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
                                     BasicSignin(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
                                     BasicSignup(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
+                                }
+                                "mediacontrols" -> {
+                                    BasicMusicControls(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
                                 }
                                 else -> {
                                     Text("whoops")
