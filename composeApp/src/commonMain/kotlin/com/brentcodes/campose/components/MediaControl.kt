@@ -31,6 +31,7 @@ import androidx.compose.ui.unit.sp
 import campose.composeapp.generated.resources.Res
 import campose.composeapp.generated.resources.favorite_filled
 import campose.composeapp.generated.resources.favorite_outline
+import campose.composeapp.generated.resources.favorite_red
 import campose.composeapp.generated.resources.list_check
 import campose.composeapp.generated.resources.list_plus
 import campose.composeapp.generated.resources.pause
@@ -81,7 +82,7 @@ fun BasicMusicControls(modifier: Modifier = Modifier) {
             }
             Spacer(modifier = Modifier.weight(1f))
             IconButton(onClick = { liked = !liked}) {
-                Icon(if (liked) painterResource(Res.drawable.favorite_filled) else painterResource(Res.drawable.favorite_outline), "Like", modifier = Modifier.size(24.dp))
+                Icon(if (liked) painterResource(Res.drawable.favorite_red) else painterResource(Res.drawable.favorite_outline), "Like", modifier = Modifier.size(24.dp), tint = if (liked) Color(0xFF1140bf) else Color.Black)
             }
         }
     }
