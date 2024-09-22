@@ -8,9 +8,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.Slider
+import androidx.compose.material.SliderColors
+import androidx.compose.material.SliderDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonDefaults
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -22,14 +25,23 @@ import androidx.compose.ui.unit.dp
 import campose.composeapp.generated.resources.Res
 import campose.composeapp.generated.resources.favorite_filled
 import campose.composeapp.generated.resources.favorite_outline
+import campose.composeapp.generated.resources.list_check
+import campose.composeapp.generated.resources.list_plus
 import campose.composeapp.generated.resources.pause
+import campose.composeapp.generated.resources.pause_filled_white_32
 import campose.composeapp.generated.resources.play
+import campose.composeapp.generated.resources.play_filled_white_32
+import campose.composeapp.generated.resources.playlist_add
+import campose.composeapp.generated.resources.playlist_add_check
 import campose.composeapp.generated.resources.repeat
 import campose.composeapp.generated.resources.repeat_1
 import campose.composeapp.generated.resources.shuffle
 import campose.composeapp.generated.resources.skip_back
+import campose.composeapp.generated.resources.skip_back_filled
 import campose.composeapp.generated.resources.skip_forward
+import campose.composeapp.generated.resources.skip_next_filled
 import org.jetbrains.compose.resources.painterResource
+import kotlin.math.roundToInt
 
 @Composable
 fun BasicMusicControls(modifier: Modifier = Modifier) {
@@ -66,6 +78,52 @@ fun BasicMusicControls(modifier: Modifier = Modifier) {
             Spacer(modifier = Modifier.weight(1f))
             IconButton(onClick = { liked = !liked}) {
                 Icon(if (liked) painterResource(Res.drawable.favorite_filled) else painterResource(Res.drawable.favorite_outline), "Like", modifier = Modifier.size(24.dp))
+            }
+        }
+    }
+}
+
+@Composable
+fun AlternativeMusicControls(modifier: Modifier = Modifier, duration: Int = 128) {
+    var sliderValue by remember { mutableStateOf(0f) }
+    var isPlaying by remember { mutableStateOf(false) }
+    var shuffle by remember { mutableStateOf(0) }
+    var inPlaylist by remember { mutableStateOf(false) }
+
+    Column(modifier = modifier.width(300.dp)) {
+        Column {
+            Row(modifier = Modifier.fillMaxWidth()) {
+                Text(text = "${duration.times(sliderValue).roundToInt().floorDiv(60)}:${duration.times(sliderValue).roundToInt().rem(60).toString().padStart(2, '0')}")
+                Spacer(modifier = Modifier.weight(1f))
+                Text(text = "${duration.floorDiv(60)}:${(duration%60).toString().padStart(2, '0')}")            }
+            Slider(
+                value = sliderValue,
+                onValueChange = { sliderValue = it },
+                modifier = Modifier.fillMaxWidth(),
+                colors = SliderDefaults.colors(thumbColor = Color.Black, activeTrackColor = Color(0xFF5f6368))
+            )
+        }
+        Row(horizontalArrangement = Arrangement.Center, modifier = Modifier.fillMaxWidth()) {
+            IconButton(onClick = { shuffle = (shuffle + 1) % 3 }) {
+                Icon(if (shuffle == 0) painterResource(Res.drawable.shuffle) else if (shuffle == 1) painterResource(Res.drawable.repeat) else painterResource(Res.drawable.repeat_1), "Shuffle State" )
+            }
+            Spacer(modifier = Modifier.weight(1f))
+            IconButton(onClick = {}) {
+                Icon(painterResource(Res.drawable.skip_back_filled), "Back")
+            }
+            IconButton(
+                onClick = { isPlaying = !isPlaying},
+                colors = IconButtonDefaults.filledIconButtonColors(containerColor = Color.Black, contentColor = Color.White),
+                modifier = Modifier.size(48.dp)
+            ) {
+                Icon(if (isPlaying) painterResource(Res.drawable.pause_filled_white_32) else painterResource(Res.drawable.play_filled_white_32), "Play or Pause Button")
+            }
+            IconButton(onClick = {}) {
+                Icon(painterResource(Res.drawable.skip_next_filled), "Forward")
+            }
+            Spacer(modifier = Modifier.weight(1f))
+            IconButton(onClick = { inPlaylist = !inPlaylist}) {
+                Icon(if (inPlaylist) painterResource(Res.drawable.list_check) else painterResource(Res.drawable.list_plus), "Add to Playlist")
             }
         }
     }

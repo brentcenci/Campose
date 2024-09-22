@@ -32,6 +32,7 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.CanvasBasedWindow
+import com.brentcodes.campose.components.AlternativeMusicControls
 import com.brentcodes.campose.components.BasicAccordion
 import com.brentcodes.campose.components.BasicBreadcrumb
 import com.brentcodes.campose.components.BasicCarousel
@@ -360,6 +361,7 @@ fun main() {
                                 }
                                 "mediacontrols" -> {
                                     BasicMusicControls(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
+                                    AlternativeMusicControls(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
                                 }
                                 else -> {
                                     Text("whoops")
