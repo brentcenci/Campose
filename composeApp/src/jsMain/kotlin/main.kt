@@ -1,8 +1,5 @@
 import androidx.compose.foundation.background
-import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.detectHorizontalDragGestures
-import androidx.compose.foundation.gestures.draggable
-import androidx.compose.foundation.gestures.rememberDraggableState
 import androidx.compose.foundation.gestures.scrollBy
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
@@ -14,12 +11,9 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -32,11 +26,8 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.CanvasBasedWindow
-import com.brentcodes.campose.components.AlternativeMusicControls
 import com.brentcodes.campose.components.BasicAccordion
 import com.brentcodes.campose.components.BasicBreadcrumb
-import com.brentcodes.campose.components.BasicCarousel
-import com.brentcodes.campose.components.BasicCarouselPager
 import com.brentcodes.campose.components.BasicMusicControls
 import com.brentcodes.campose.components.BasicSearchBar
 import com.brentcodes.campose.components.BasicSignin
@@ -47,8 +38,8 @@ import com.brentcodes.campose.components.Card
 import com.brentcodes.campose.components.CardWithSideImage
 import com.brentcodes.campose.components.Comment
 import com.brentcodes.campose.components.CommentStyleTwo
-import com.brentcodes.campose.components.CustomToggle
 import com.brentcodes.campose.components.ExpandingHorizontal
+import com.brentcodes.campose.components.ExtendedMusicControls
 import com.brentcodes.campose.components.ImageCard
 import com.brentcodes.campose.components.ImageCardWithBadges
 import com.brentcodes.campose.components.ImageCardWithButton
@@ -228,6 +219,10 @@ fun main() {
                         "basicsignin" -> BasicSignin(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
                         "basicsignup" -> BasicSignup(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
                     }
+                    "mediacontrols" -> when (queryParams.get("component")) {
+                        "basicmusiccontrols" -> BasicMusicControls(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
+                        "extendedmusiccontrols" -> ExtendedMusicControls(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
+                    }
 
                     else -> {
                         val categoryType = remember { mutableStateOf("cards") }
@@ -361,7 +356,7 @@ fun main() {
                                 }
                                 "mediacontrols" -> {
                                     BasicMusicControls(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
-                                    AlternativeMusicControls(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
+                                    ExtendedMusicControls(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
                                 }
                                 else -> {
                                     Text("whoops")

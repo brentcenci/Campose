@@ -8,11 +8,9 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.Slider
-import androidx.compose.material.SliderColors
 import androidx.compose.material.SliderDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -39,8 +37,6 @@ import campose.composeapp.generated.resources.pause
 import campose.composeapp.generated.resources.pause_filled_white_32
 import campose.composeapp.generated.resources.play
 import campose.composeapp.generated.resources.play_filled_white_32
-import campose.composeapp.generated.resources.playlist_add
-import campose.composeapp.generated.resources.playlist_add_check
 import campose.composeapp.generated.resources.repeat
 import campose.composeapp.generated.resources.repeat_1
 import campose.composeapp.generated.resources.shuffle
@@ -92,7 +88,7 @@ fun BasicMusicControls(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun AlternativeMusicControls(modifier: Modifier = Modifier, duration: Int = 128, songTitle: String = "Song Title", artist: String = "Artist Name ft. Artist") {
+fun ExtendedMusicControls(modifier: Modifier = Modifier, duration: Int = 128, songTitle: String = "Song Title", artist: String = "Artist Name ft. Artist") {
     var sliderValue by remember { mutableStateOf(0f) }
     var isPlaying by remember { mutableStateOf(false) }
     var shuffle by remember { mutableStateOf(0) }
