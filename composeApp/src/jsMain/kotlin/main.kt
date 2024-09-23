@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowColumn
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -54,6 +55,7 @@ import com.brentcodes.campose.components.StarRatingReview
 import com.brentcodes.campose.components.UsernameField
 import com.brentcodes.campose.components.VideoCard
 import com.brentcodes.campose.components.VideoCardYoutubeStyle
+import com.brentcodes.campose.components.VolumeControls
 import kotlinx.browser.window
 import kotlinx.coroutines.launch
 import org.jetbrains.skiko.wasm.onWasmReady
@@ -222,11 +224,12 @@ fun main() {
                     "mediacontrols" -> when (queryParams.get("component")) {
                         "basicmusiccontrols" -> BasicMusicControls(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
                         "extendedmusiccontrols" -> ExtendedMusicControls(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
+                        "volumecontrols" -> VolumeControls(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
                     }
 
                     else -> {
                         val categoryType = remember { mutableStateOf("cards") }
-                        Row(modifier = Modifier.align(Alignment.TopCenter)) {
+                        FlowRow(modifier = Modifier.align(Alignment.TopCenter)) {
                             for (category in listOf("cards", "reviews", "expanding", "accordion", "toggles", "breadcrumbs", "carousels", "searchbars", "authentication", "mediacontrols")) {
                                 Button(onClick = {
                                     categoryType.value = category
@@ -357,6 +360,7 @@ fun main() {
                                 "mediacontrols" -> {
                                     BasicMusicControls(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
                                     ExtendedMusicControls(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
+                                    VolumeControls(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
                                 }
                                 else -> {
                                     Text("whoops")

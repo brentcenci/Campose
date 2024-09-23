@@ -8,10 +8,12 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.Slider
 import androidx.compose.material.SliderDefaults
+import androidx.compose.material.icons.Icons
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonDefaults
@@ -45,6 +47,8 @@ import campose.composeapp.generated.resources.skip_back
 import campose.composeapp.generated.resources.skip_back_filled
 import campose.composeapp.generated.resources.skip_forward
 import campose.composeapp.generated.resources.skip_next_filled
+import campose.composeapp.generated.resources.volume_mute
+import campose.composeapp.generated.resources.volume_up
 import org.jetbrains.compose.resources.painterResource
 import kotlin.math.roundToInt
 
@@ -139,5 +143,21 @@ fun ExtendedMusicControls(modifier: Modifier = Modifier, duration: Int = 128, so
                 Icon(if (inPlaylist) painterResource(Res.drawable.list_check) else painterResource(Res.drawable.list_plus), "Add to Playlist")
             }
         }
+    }
+}
+
+@Composable
+fun VolumeControls(modifier: Modifier = Modifier) {
+    var sliderValue by remember { mutableStateOf(0f) }
+
+    Row(verticalAlignment = Alignment.CenterVertically, modifier = modifier.width(300.dp)) {
+        Icon(painterResource(Res.drawable.volume_mute), "Volume Off", modifier = Modifier.size(28.dp))
+        androidx.compose.material3.Slider(
+            value = sliderValue,
+            onValueChange = { sliderValue = it },
+            modifier = Modifier.weight(1f).padding(horizontal = 10.dp),
+            colors = androidx.compose.material3.SliderDefaults.colors(thumbColor = Color.Black, activeTrackColor = Color(0xFF5f6368))
+        )
+        Icon(painterResource(Res.drawable.volume_up), "Volume On", modifier = Modifier.size(28.dp))
     }
 }
