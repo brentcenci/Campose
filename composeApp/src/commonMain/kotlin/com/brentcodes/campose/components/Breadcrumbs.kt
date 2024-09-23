@@ -4,15 +4,24 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.ShoppingCart
+import androidx.compose.material.icons.filled.ThumbUp
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.text.TextMeasurer
@@ -23,7 +32,11 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun BasicBreadcrumb(modifier: Modifier = Modifier, separator: String = "»", sections: List<String> = listOf("Cart", "Billing", "Shipping", "Payment")) {
+fun BasicBreadcrumb(
+    modifier: Modifier = Modifier,
+    separator: String = "»",
+    sections: List<String> = listOf("Cart", "Billing", "Shipping", "Payment")
+) {
     val current = remember { mutableIntStateOf(2) }
     Row(modifier = modifier, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
         sections.forEachIndexed { index, section ->
@@ -33,7 +46,50 @@ fun BasicBreadcrumb(modifier: Modifier = Modifier, separator: String = "»", sec
                 color = if (current.value < index) Color.LightGray else Color.Blue,
                 modifier = Modifier.clickable { current.value = index }
             )
-            if (index != sections.size-1) {
+            if (index != sections.size - 1) {
+                Text(separator, color = Color.LightGray)
+            }
+        }
+    }
+}
+
+@Composable
+fun BasicBreadcrumbWithIcon(
+    modifier: Modifier = Modifier,
+    separator: String = "»",
+    sections: List<String> = listOf(
+        "Home",
+        "Search",
+        "Cart",
+        "Purchase Successful"
+    ),
+    icons: List<ImageVector> = listOf(
+        Icons.Default.Home,
+        Icons.Default.Search,
+        Icons.Default.ShoppingCart,
+        Icons.Default.ThumbUp
+    )
+) {
+    val current = remember { mutableIntStateOf(2) }
+    Row(
+        modifier = modifier,
+        horizontalArrangement = Arrangement.spacedBy(10.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        sections.forEachIndexed { index, section ->
+            Icon(
+                icons[index],
+                "",
+                tint = if (current.value < index) Color.LightGray else Color.Blue,
+                modifier = Modifier.size(16.dp)
+            )
+            Text(
+                text = section,
+                fontWeight = if (index == current.value) FontWeight.Bold else FontWeight.Normal,
+                color = if (current.value < index) Color.LightGray else Color.Blue,
+                modifier = Modifier.clickable { current.value = index }
+            )
+            if (index != sections.size - 1) {
                 Text(separator, color = Color.LightGray)
             }
         }

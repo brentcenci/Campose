@@ -29,6 +29,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.CanvasBasedWindow
 import com.brentcodes.campose.components.BasicAccordion
 import com.brentcodes.campose.components.BasicBreadcrumb
+import com.brentcodes.campose.components.BasicBreadcrumbWithIcon
 import com.brentcodes.campose.components.BasicMusicControls
 import com.brentcodes.campose.components.BasicSearchBar
 import com.brentcodes.campose.components.BasicSignin
@@ -321,6 +322,7 @@ fun main() {
                                     Column(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp), verticalArrangement = Arrangement.spacedBy(20.dp)) {
                                         BasicBreadcrumb()
                                         BasicBreadcrumb(separator = "/", sections = listOf("Home", "Clothing", "Men's Shirts"))
+                                        BasicBreadcrumbWithIcon()
                                     }
 
                                 }
