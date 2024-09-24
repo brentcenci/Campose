@@ -36,6 +36,7 @@ import com.brentcodes.campose.components.BasicSignin
 import com.brentcodes.campose.components.BasicSignup
 import com.brentcodes.campose.components.BasicToggle
 import com.brentcodes.campose.components.BasicToggleWithContent
+import com.brentcodes.campose.components.BubbleBreadcrumbs
 import com.brentcodes.campose.components.Card
 import com.brentcodes.campose.components.CardWithSideImage
 import com.brentcodes.campose.components.Comment
@@ -196,19 +197,13 @@ fun main() {
 
                     "breadcrumbs" -> when (queryParams.get("component")) {
                         "basicbreadcrumb" -> {
-                            Column(
-                                modifier = Modifier.background(
-                                    Color.White,
-                                    RoundedCornerShape(20.dp)
-                                ).padding(20.dp), verticalArrangement = Arrangement.spacedBy(20.dp)
-                            ) {
-                                BasicBreadcrumb()
-                                BasicBreadcrumb(
-                                    separator = "/",
-                                    sections = listOf("Home", "Clothing", "Men's Shirts")
-                                )
+                            Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {
+                                BasicBreadcrumb(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
+                                BasicBreadcrumb(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp), separator = "/", sections = listOf("Home", "Clothing", "Men's Shirts"))
                             }
                         }
+                        "basicbreadcrumbwithicon" -> BasicBreadcrumbWithIcon(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
+                        "bubblebreadcrumbs" -> BubbleBreadcrumbs(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp), separator = ">")
                     }
                     "searchbars" -> when (queryParams.get("component")) {
                         "basicsearchbar" -> BasicSearchBar(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
@@ -319,10 +314,11 @@ fun main() {
                                     MainToggle()
                                 }
                                 "breadcrumbs" -> {
-                                    Column(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp), verticalArrangement = Arrangement.spacedBy(20.dp)) {
-                                        BasicBreadcrumb()
-                                        BasicBreadcrumb(separator = "/", sections = listOf("Home", "Clothing", "Men's Shirts"))
-                                        BasicBreadcrumbWithIcon()
+                                    Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {
+                                        BasicBreadcrumb(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
+                                        BasicBreadcrumb(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp), separator = "/", sections = listOf("Home", "Clothing", "Men's Shirts"))
+                                        BasicBreadcrumbWithIcon(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
+                                        BubbleBreadcrumbs(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp), separator = ">")
                                     }
 
                                 }

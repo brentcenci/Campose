@@ -1,11 +1,15 @@
 package com.brentcodes.campose.components
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Search
@@ -18,6 +22,7 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
@@ -35,7 +40,9 @@ import androidx.compose.ui.unit.dp
 fun BasicBreadcrumb(
     modifier: Modifier = Modifier,
     separator: String = "»",
-    sections: List<String> = listOf("Cart", "Billing", "Shipping", "Payment")
+    sections: List<String> = listOf("Cart", "Billing", "Shipping", "Payment"),
+    primaryColor: Color = Color(0xFF206FEE),
+    secondaryColor: Color = Color.Gray
 ) {
     val current = remember { mutableIntStateOf(2) }
     Row(modifier = modifier, horizontalArrangement = Arrangement.spacedBy(10.dp)) {
@@ -43,11 +50,11 @@ fun BasicBreadcrumb(
             Text(
                 text = section,
                 fontWeight = if (index == current.value) FontWeight.Bold else FontWeight.Normal,
-                color = if (current.value < index) Color.LightGray else Color.Blue,
+                color = if (current.value < index) secondaryColor else primaryColor,
                 modifier = Modifier.clickable { current.value = index }
             )
             if (index != sections.size - 1) {
-                Text(separator, color = Color.LightGray)
+                Text(separator, color = secondaryColor)
             }
         }
     }
@@ -68,7 +75,9 @@ fun BasicBreadcrumbWithIcon(
         Icons.Default.Search,
         Icons.Default.ShoppingCart,
         Icons.Default.ThumbUp
-    )
+    ),
+    primaryColor: Color = Color(0xFF206FEE),
+    secondaryColor: Color = Color.Gray
 ) {
     val current = remember { mutableIntStateOf(2) }
     Row(
@@ -76,21 +85,75 @@ fun BasicBreadcrumbWithIcon(
         horizontalArrangement = Arrangement.spacedBy(10.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        sections.forEachIndexed { index, section ->
-            Icon(
-                icons[index],
-                "",
-                tint = if (current.value < index) Color.LightGray else Color.Blue,
-                modifier = Modifier.size(16.dp)
-            )
-            Text(
-                text = section,
-                fontWeight = if (index == current.value) FontWeight.Bold else FontWeight.Normal,
-                color = if (current.value < index) Color.LightGray else Color.Blue,
-                modifier = Modifier.clickable { current.value = index }
-            )
+        for (index in sections.indices) {
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(4.dp),
+                modifier = Modifier.clickable { current.value = index }) {
+                Icon(
+                    icons[index],
+                    "",
+                    tint = if (current.value < index) secondaryColor else primaryColor,
+                    modifier = Modifier.size(16.dp)
+                )
+                Text(
+                    text = sections[index],
+                    fontWeight = if (index == current.value) FontWeight.Bold else FontWeight.Normal,
+                    color = if (current.value < index) secondaryColor else primaryColor,
+                )
+            }
             if (index != sections.size - 1) {
-                Text(separator, color = Color.LightGray)
+                Text(separator, color = secondaryColor)
+            }
+        }
+    }
+}
+
+@Composable
+fun BubbleBreadcrumbs(
+    modifier: Modifier = Modifier,
+    separator: String = "»",
+    sections: List<String> = listOf(
+        "Home",
+        "Search",
+        "Cart",
+        "Purchase Successful"
+    ),
+    icons: List<ImageVector> = listOf(
+        Icons.Default.Home,
+        Icons.Default.Search,
+        Icons.Default.ShoppingCart,
+        Icons.Default.ThumbUp
+    ),
+    primaryColor: Color = Color(0xFF206FEE),
+    secondaryColor: Color = Color.Gray
+
+) {
+    val current = remember { mutableIntStateOf(2) }
+    Row(
+        modifier = modifier,
+        horizontalArrangement = Arrangement.spacedBy(10.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        for (index in sections.indices) {
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(4.dp),
+                modifier = Modifier.background(if (current.value == index) primaryColor else Color.Transparent, RoundedCornerShape(50)).clip(
+                    RoundedCornerShape(50)).clickable { current.value = index }.padding(8.dp)
+            ) {
+                Icon(
+                    icons[index],
+                    "",
+                    tint = if (current.value < index) secondaryColor else if (current.value == index) Color.White else primaryColor,
+                    modifier = Modifier.size(16.dp)
+                )
+                Text(
+                    text = sections[index],
+                    fontWeight = if (index == current.value) FontWeight.Bold else FontWeight.Normal,
+                    color = if (current.value < index) secondaryColor else if (current.value == index) Color.White else primaryColor,
+                )
+            }
+            if (index != sections.size - 1) {
+                Text(separator, color = secondaryColor)
             }
         }
     }
