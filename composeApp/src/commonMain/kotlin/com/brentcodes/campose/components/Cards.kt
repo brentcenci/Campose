@@ -327,7 +327,7 @@ fun PricingCard(
     price: Int
 ) {
     Column(
-        modifier = modifier.width(300.dp).background(Color.White, RoundedCornerShape(20.dp))
+        modifier = modifier.width(250.dp).background(Color.White, RoundedCornerShape(20.dp))
             .padding(20.dp), verticalArrangement = Arrangement.spacedBy(20.dp)
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {

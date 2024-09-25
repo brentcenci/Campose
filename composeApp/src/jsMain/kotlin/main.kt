@@ -76,7 +76,7 @@ import org.w3c.dom.url.URLSearchParams
 fun main() {
 
     onWasmReady {
-        CanvasBasedWindow("Campose") {
+        CanvasBasedWindow("Compose UI Library") {
             Box(
                 modifier = Modifier.fillMaxSize().background(Color.LightGray.copy(alpha = 0.4f))
                     .padding(20.dp), contentAlignment = Alignment.Center
@@ -135,7 +135,7 @@ fun main() {
                             authorName = "CoolVideoGuy42",
                             authorImage = "https://picsum.photos/100/100",
                         )
-                        "pricingcard" -> Row(horizontalArrangement = Arrangement.spacedBy(20.dp)) {
+                        "pricingcard" -> Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                             PricingCard(
                                 icon = Res.drawable.app_dots,
                                 primaryColor = Color(0xFF751dc2),
