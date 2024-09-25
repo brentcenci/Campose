@@ -42,19 +42,13 @@ import org.jetbrains.compose.resources.painterResource
 
 @Composable
 fun Card(modifier: Modifier = Modifier, title: String, content: String) {
-    Box(
-        modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).width(300.dp)
-            .padding(20.dp)
-    ) {
-        Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
-            Text(
-                text = title,
-                fontSize = 28.sp,
-                color = Color.DarkGray,
-                fontWeight = FontWeight.Bold
-            )
-            Text(text = content, color = Color.DarkGray)
-        }
+    Column(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).width(300.dp)
+        .padding(20.dp), verticalArrangement = Arrangement.spacedBy(20.dp)) {
+        Text(
+            text = title,
+            fontSize = 20.sp,
+        )
+        Text(text = content, color = Color(0xFF6b6b6b))
     }
 }
 
@@ -184,17 +178,15 @@ fun CardWithSideImage(title: String, content: String, imageUrl: String) {
                 model = imageUrl,
                 contentDescription = "Placeholder",
                 imageLoader = ImageLoader(context = PlatformContext.INSTANCE),
-                modifier = Modifier.size(100.dp),
+                modifier = Modifier.size(120.dp),
                 contentScale = ContentScale.Crop
             )
-            Column(modifier = Modifier.padding(20.dp), verticalArrangement = Arrangement.Center) {
+            Column(modifier = Modifier.padding(20.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
                 Text(
                     text = title,
-                    fontSize = 24.sp,
-                    color = Color.DarkGray,
-                    fontWeight = FontWeight.Bold
+                    fontSize = 20.sp
                 )
-                Text(text = content, color = Color.DarkGray)
+                Text(text = content, color = Color(0xFF6b6b6b))
             }
         }
     }
@@ -299,19 +291,17 @@ fun VideoCard(
             }
             Column(
                 modifier = Modifier.padding(20.dp),
-                verticalArrangement = Arrangement.spacedBy(10.dp)
+                verticalArrangement = Arrangement.spacedBy(20.dp)
             ) {
                 Text(
                     text = title,
-                    fontSize = 18.sp,
-                    color = Color.DarkGray,
-                    fontWeight = FontWeight.Bold,
+                    fontSize = 20.sp,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
                 Text(
                     text = summary,
-                    color = Color.DarkGray,
+                    color = Color(0xFF6b6b6b),
                     maxLines = 3,
                     overflow = TextOverflow.Ellipsis
                 )
@@ -399,6 +389,58 @@ fun PricingCard(
                 fontSize = 16.sp
             )
         }
+    }
+}
+
+@Composable
+fun CardWithImageAndButton(modifier: Modifier = Modifier, imageUrl: String, title: String, content: String, buttonText: String) {
+    Column(
+        modifier = Modifier.width(300.dp).background(Color.White, RoundedCornerShape(20.dp))
+            .padding(20.dp), verticalArrangement = Arrangement.spacedBy(20.dp)
+    ) {
+        AsyncImage(
+            model = imageUrl,
+            contentDescription = "Placeholder",
+            imageLoader = ImageLoader(context = PlatformContext.INSTANCE),
+            modifier = Modifier.fillMaxWidth().height(200.dp).clip(RoundedCornerShape(10.dp)),
+            contentScale = ContentScale.Crop
+        )
+        Row {
+            Text(title, fontSize = 20.sp)
+        }
+        Text(
+            content,
+            color = Color(0xFF6b6b6b)
+        )
+        Row {
+            Spacer(modifier=Modifier.weight(1f))
+            Button(onClick = {}, modifier = Modifier.weight(1f), colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF2157eb), contentColor = Color.White), shape = RoundedCornerShape(10.dp)) {
+                Text(buttonText, textAlign = TextAlign.Center, fontWeight = FontWeight.Bold)
+            }
+        }
+    }
+}
+
+@Composable
+fun CardWithImage(modifier: Modifier = Modifier, imageUrl: String, title: String, content: String) {
+    Column(
+        modifier = Modifier.width(300.dp).background(Color.White, RoundedCornerShape(20.dp))
+            .padding(20.dp), verticalArrangement = Arrangement.spacedBy(20.dp)
+    ) {
+        AsyncImage(
+            model = imageUrl,
+            contentDescription = "Placeholder",
+            imageLoader = ImageLoader(context = PlatformContext.INSTANCE),
+            modifier = Modifier.fillMaxWidth().height(200.dp).clip(RoundedCornerShape(10.dp)),
+            contentScale = ContentScale.Crop
+        )
+        Row {
+            Text(title, fontSize = 20.sp)
+        }
+        Text(
+            content,
+            color = Color(0xFF6b6b6b)
+        )
     }
 }
 

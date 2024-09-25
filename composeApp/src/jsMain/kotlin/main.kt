@@ -43,6 +43,8 @@ import com.brentcodes.campose.components.BasicToggle
 import com.brentcodes.campose.components.BasicToggleWithContent
 import com.brentcodes.campose.components.BubbleBreadcrumbs
 import com.brentcodes.campose.components.Card
+import com.brentcodes.campose.components.CardWithImage
+import com.brentcodes.campose.components.CardWithImageAndButton
 import com.brentcodes.campose.components.CardWithSideImage
 import com.brentcodes.campose.components.Comment
 import com.brentcodes.campose.components.CommentStyleTwo
@@ -354,27 +356,20 @@ fun main() {
                                         title = "This is a Title",
                                         content = "This is sample content, which should be short and sweet."
                                     )
-                                    ImageCard(
+                                    CardWithImage(
                                         title = "This is a Title",
-                                        content = "This is the content of the image card, which is short and sweet",
+                                        content = "This is the content of the image card, which is short and sweet. You can include a great many details here, or keep it minimal.",
                                         imageUrl = "https://picsum.photos/400/400"
                                     )
-                                    ImageCardWithButton(
+                                    CardWithImageAndButton(
                                         title = "This is a Title",
-                                        content = "This is the content of the image card, which is short and sweet",
+                                        content = "This is the content of the image card, which is short and sweet. You can include a great many details here, or keep it minimal.",
                                         imageUrl = "https://picsum.photos/400/400",
-                                        buttonText = "Button"
-                                    )
-                                    ImageCardWithBadges(
-                                        title = "This is a Title",
-                                        content = "This is the content of the image card, which is short and sweet",
-                                        imageUrl = "https://picsum.photos/400/400",
-                                        titleBadge = "SALE",
-                                        contentBadges = listOf("Cotton", "Linen")
+                                        buttonText = "See more"
                                     )
                                     CardWithSideImage(
                                         title = "Short Title",
-                                        content = "Short and sweet content section",
+                                        content = "This is a very short and sweet content section.",
                                         imageUrl = "https://picsum.photos/400/400"
                                     )
                                     VideoCardYoutubeStyle(
@@ -394,6 +389,17 @@ fun main() {
                                         authorName = "CoolVideoGuy42",
                                         authorImage = "https://picsum.photos/100/100",
                                     )
+                                    PricingCard(
+                                        icon = Res.drawable.app,
+                                        primaryColor = Color(0xFF2157eb),
+                                        forText = "For startups",
+                                        planNameText = "Business",
+                                        description = "This is a pro plan for small-businesses and startups.",
+                                        price = 149,
+                                        features = listOf("All analytical features", "Feet pics every Thursday", "Up to 10 team members", "Premium support")
+                                    )
+                                    SaleCard(imageUrl = "https://picsum.photos/300/300")
+                                    AccessCard()
                                 }
 
                                 "reviews" -> {
@@ -593,6 +599,17 @@ fun main() {
                                     }
                                     SaleCard(imageUrl = "https://picsum.photos/300/300")
                                     AccessCard()
+                                    CardWithImage(
+                                        title = "This is a Title",
+                                        content = "This is the content of the image card, which is short and sweet. You can include a great many details here, or keep it minimal.",
+                                        imageUrl = "https://picsum.photos/400/400"
+                                    )
+                                    CardWithImageAndButton(
+                                        title = "This is a Title",
+                                        content = "This is the content of the image card, which is short and sweet. You can include a great many details here, or keep it minimal.",
+                                        imageUrl = "https://picsum.photos/400/400",
+                                        buttonText = "See more"
+                                    )
                                 }
 
                                 else -> {
