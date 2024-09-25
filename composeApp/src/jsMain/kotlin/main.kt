@@ -90,17 +90,17 @@ fun main() {
                             content = "This is sample content, which should be short and sweet."
                         )
 
-                        "imagecard" -> ImageCard(
+                        "imagecard" -> CardWithImage(
                             title = "This is a Title",
-                            content = "This is the content of the image card, which is short and sweet",
+                            content = "This is the content of the image card, which is short and sweet. You can include a great many details here, or keep it minimal.",
                             imageUrl = "https://picsum.photos/400/400"
                         )
 
-                        "imagecardwithbutton" -> ImageCardWithButton(
+                        "imagecardwithbutton" -> CardWithImageAndButton(
                             title = "This is a Title",
-                            content = "This is the content of the image card, which is short and sweet",
+                            content = "This is the content of the image card, which is short and sweet. You can include a great many details here, or keep it minimal.",
                             imageUrl = "https://picsum.photos/400/400",
-                            buttonText = "Button"
+                            buttonText = "See more"
                         )
 
                         "imagecardwithbadges" -> ImageCardWithBadges(
@@ -113,7 +113,7 @@ fun main() {
 
                         "cardwithsideimage" -> CardWithSideImage(
                             title = "Short Title",
-                            content = "Short and sweet content section",
+                            content = "This is a very short and sweet content section.",
                             imageUrl = "https://picsum.photos/400/400"
                         )
 
@@ -135,6 +135,36 @@ fun main() {
                             authorName = "CoolVideoGuy42",
                             authorImage = "https://picsum.photos/100/100",
                         )
+                        "pricingcard" -> Row(horizontalArrangement = Arrangement.spacedBy(20.dp)) {
+                            PricingCard(
+                                icon = Res.drawable.app_dots,
+                                primaryColor = Color(0xFF751dc2),
+                                forText = "For individuals",
+                                planNameText = "Basic",
+                                description = "This is a basic plan designed to get you started for personal projects.",
+                                price = 99
+                            )
+                            PricingCard(
+                                icon = Res.drawable.app,
+                                primaryColor = Color(0xFF2157eb),
+                                forText = "For startups",
+                                planNameText = "Business",
+                                description = "This is a pro plan for small-businesses and startups.",
+                                price = 149,
+                                features = listOf("All analytical features", "More Gigabytes", "Up to 10 team members", "Premium support")
+                            )
+                            PricingCard(
+                                icon = Res.drawable.dashboard,
+                                primaryColor = Color(0xFFc21543),
+                                forText = "For big companies",
+                                planNameText = "Enterprise",
+                                description = "This is a professional plan for large-scale use across a large company.",
+                                price = 249,
+                                features = listOf("All analytical features", "More terabytes", "Up to 50 team members", "Dedicated support")
+                            )
+                        }
+                        "salecard" -> SaleCard(imageUrl = "https://picsum.photos/300/300")
+                        "accesscard" -> AccessCard()
                     }
 
                     "reviews" -> when (queryParams.get("component")) {
