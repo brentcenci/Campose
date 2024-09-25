@@ -27,6 +27,11 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.CanvasBasedWindow
+import campose.composeapp.generated.resources.Res
+import campose.composeapp.generated.resources.app
+import campose.composeapp.generated.resources.app_dots
+import campose.composeapp.generated.resources.dashboard
+import com.brentcodes.campose.components.AccessCard
 import com.brentcodes.campose.components.BasicAccordion
 import com.brentcodes.campose.components.BasicBreadcrumb
 import com.brentcodes.campose.components.BasicBreadcrumbWithIcon
@@ -48,7 +53,9 @@ import com.brentcodes.campose.components.ImageCardWithBadges
 import com.brentcodes.campose.components.ImageCardWithButton
 import com.brentcodes.campose.components.MainToggle
 import com.brentcodes.campose.components.PasswordField
+import com.brentcodes.campose.components.PricingCard
 import com.brentcodes.campose.components.RoundedSearchBar
+import com.brentcodes.campose.components.SaleCard
 import com.brentcodes.campose.components.SearchBarWithButton
 import com.brentcodes.campose.components.SearchBarWithSuggestions
 import com.brentcodes.campose.components.StarRatingBar
@@ -198,42 +205,149 @@ fun main() {
                     "breadcrumbs" -> when (queryParams.get("component")) {
                         "basicbreadcrumb" -> {
                             Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {
-                                BasicBreadcrumb(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
-                                BasicBreadcrumb(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp), separator = "/", sections = listOf("Home", "Clothing", "Men's Shirts"))
+                                BasicBreadcrumb(
+                                    modifier = Modifier.background(
+                                        Color.White,
+                                        RoundedCornerShape(20.dp)
+                                    ).padding(20.dp)
+                                )
+                                BasicBreadcrumb(
+                                    modifier = Modifier.background(
+                                        Color.White,
+                                        RoundedCornerShape(20.dp)
+                                    ).padding(20.dp),
+                                    separator = "/",
+                                    sections = listOf("Home", "Clothing", "Men's Shirts")
+                                )
                             }
                         }
-                        "basicbreadcrumbwithicon" -> BasicBreadcrumbWithIcon(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
-                        "bubblebreadcrumbs" -> BubbleBreadcrumbs(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp), separator = ">")
+
+                        "basicbreadcrumbwithicon" -> BasicBreadcrumbWithIcon(
+                            modifier = Modifier.background(
+                                Color.White,
+                                RoundedCornerShape(20.dp)
+                            ).padding(20.dp)
+                        )
+
+                        "bubblebreadcrumbs" -> BubbleBreadcrumbs(
+                            modifier = Modifier.background(
+                                Color.White,
+                                RoundedCornerShape(20.dp)
+                            ).padding(20.dp), separator = ">"
+                        )
                     }
+
                     "searchbars" -> when (queryParams.get("component")) {
-                        "basicsearchbar" -> BasicSearchBar(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
-                        "roundedsearchbar" -> RoundedSearchBar(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
-                        "searchbarwithsuggestions" -> SearchBarWithSuggestions(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
-                        "searchbarwithbutton" -> SearchBarWithButton(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
+                        "basicsearchbar" -> BasicSearchBar(
+                            modifier = Modifier.background(
+                                Color.White,
+                                RoundedCornerShape(20.dp)
+                            ).padding(20.dp)
+                        )
+
+                        "roundedsearchbar" -> RoundedSearchBar(
+                            modifier = Modifier.background(
+                                Color.White,
+                                RoundedCornerShape(20.dp)
+                            ).padding(20.dp)
+                        )
+
+                        "searchbarwithsuggestions" -> SearchBarWithSuggestions(
+                            modifier = Modifier.background(
+                                Color.White,
+                                RoundedCornerShape(20.dp)
+                            ).padding(20.dp)
+                        )
+
+                        "searchbarwithbutton" -> SearchBarWithButton(
+                            modifier = Modifier.background(
+                                Color.White,
+                                RoundedCornerShape(20.dp)
+                            ).padding(20.dp)
+                        )
                     }
+
                     "authentication" -> when (queryParams.get("component")) {
-                        "usernamefield" -> UsernameField(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
-                        "passwordfield" -> PasswordField(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
-                        "basicsignin" -> BasicSignin(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
-                        "basicsignup" -> BasicSignup(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
+                        "usernamefield" -> UsernameField(
+                            modifier = Modifier.background(
+                                Color.White,
+                                RoundedCornerShape(20.dp)
+                            ).padding(20.dp)
+                        )
+
+                        "passwordfield" -> PasswordField(
+                            modifier = Modifier.background(
+                                Color.White,
+                                RoundedCornerShape(20.dp)
+                            ).padding(20.dp)
+                        )
+
+                        "basicsignin" -> BasicSignin(
+                            modifier = Modifier.background(
+                                Color.White,
+                                RoundedCornerShape(20.dp)
+                            ).padding(20.dp)
+                        )
+
+                        "basicsignup" -> BasicSignup(
+                            modifier = Modifier.background(
+                                Color.White,
+                                RoundedCornerShape(20.dp)
+                            ).padding(20.dp)
+                        )
                     }
+
                     "mediacontrols" -> when (queryParams.get("component")) {
-                        "basicmusiccontrols" -> BasicMusicControls(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
-                        "extendedmusiccontrols" -> ExtendedMusicControls(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
-                        "volumecontrols" -> VolumeControls(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
+                        "basicmusiccontrols" -> BasicMusicControls(
+                            modifier = Modifier.background(
+                                Color.White,
+                                RoundedCornerShape(20.dp)
+                            ).padding(20.dp)
+                        )
+
+                        "extendedmusiccontrols" -> ExtendedMusicControls(
+                            modifier = Modifier.background(
+                                Color.White,
+                                RoundedCornerShape(20.dp)
+                            ).padding(20.dp)
+                        )
+
+                        "volumecontrols" -> VolumeControls(
+                            modifier = Modifier.background(
+                                Color.White,
+                                RoundedCornerShape(20.dp)
+                            ).padding(20.dp)
+                        )
                     }
 
                     else -> {
-                        val categoryType = remember { mutableStateOf("cards") }
+                        val categoryType = remember { mutableStateOf("test") }
                         FlowRow(modifier = Modifier.align(Alignment.TopCenter)) {
-                            for (category in listOf("cards", "reviews", "expanding", "accordion", "toggles", "breadcrumbs", "carousels", "searchbars", "authentication", "mediacontrols")) {
+                            for (category in listOf(
+                                "cards",
+                                "reviews",
+                                "expanding",
+                                "accordion",
+                                "toggles",
+                                "breadcrumbs",
+                                "carousels",
+                                "searchbars",
+                                "authentication",
+                                "mediacontrols",
+                                "test"
+                            )) {
                                 Button(onClick = {
                                     categoryType.value = category
                                 }) { Text(category) }
                             }
                         }
-                        FlowColumn(verticalArrangement = Arrangement.spacedBy(20.dp), horizontalArrangement = Arrangement.spacedBy(20.dp), modifier = Modifier.align(
-                            Alignment.Center)) {
+                        FlowColumn(
+                            verticalArrangement = Arrangement.spacedBy(20.dp),
+                            horizontalArrangement = Arrangement.spacedBy(20.dp),
+                            modifier = Modifier.align(
+                                Alignment.Center
+                            )
+                        ) {
                             when (categoryType.value) {
                                 "cards" -> {
                                     Card(
@@ -281,6 +395,7 @@ fun main() {
                                         authorImage = "https://picsum.photos/100/100",
                                     )
                                 }
+
                                 "reviews" -> {
                                     Comment("https://picsum.photos/id/64/100/100")
                                     CommentStyleTwo(
@@ -304,33 +419,61 @@ fun main() {
                                         rating = 3
                                     )
                                 }
+
                                 "expanding" -> {
                                     ExpandingHorizontal()
                                 }
+
                                 "accordion" -> {
                                     BasicAccordion()
                                 }
+
                                 "toggles" -> {
                                     MainToggle()
                                 }
+
                                 "breadcrumbs" -> {
                                     Column(verticalArrangement = Arrangement.spacedBy(20.dp)) {
-                                        BasicBreadcrumb(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
-                                        BasicBreadcrumb(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp), separator = "/", sections = listOf("Home", "Clothing", "Men's Shirts"))
-                                        BasicBreadcrumbWithIcon(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
-                                        BubbleBreadcrumbs(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp), separator = ">")
+                                        BasicBreadcrumb(
+                                            modifier = Modifier.background(
+                                                Color.White,
+                                                RoundedCornerShape(20.dp)
+                                            ).padding(20.dp)
+                                        )
+                                        BasicBreadcrumb(
+                                            modifier = Modifier.background(
+                                                Color.White,
+                                                RoundedCornerShape(20.dp)
+                                            ).padding(20.dp),
+                                            separator = "/",
+                                            sections = listOf("Home", "Clothing", "Men's Shirts")
+                                        )
+                                        BasicBreadcrumbWithIcon(
+                                            modifier = Modifier.background(
+                                                Color.White,
+                                                RoundedCornerShape(20.dp)
+                                            ).padding(20.dp)
+                                        )
+                                        BubbleBreadcrumbs(
+                                            modifier = Modifier.background(
+                                                Color.White,
+                                                RoundedCornerShape(20.dp)
+                                            ).padding(20.dp), separator = ">"
+                                        )
                                     }
 
                                 }
+
                                 "carousels" -> {
                                     val scrollState = rememberScrollState()
                                     val coroutineScope = rememberCoroutineScope()
                                     Row(
-                                        modifier = Modifier.horizontalScroll(state = scrollState).pointerInput(Unit) {
-                                            detectHorizontalDragGestures { _, dragAmount ->
-                                                coroutineScope.launch { scrollState.scrollBy(-dragAmount) }
+                                        modifier = Modifier.horizontalScroll(state = scrollState)
+                                            .pointerInput(Unit) {
+                                                detectHorizontalDragGestures { _, dragAmount ->
+                                                    coroutineScope.launch { scrollState.scrollBy(-dragAmount) }
+                                                }
                                             }
-                                        }
                                     ) {
                                         for (index in 1..30) {
                                             Box(
@@ -343,23 +486,115 @@ fun main() {
 
                                     }
                                 }
+
                                 "searchbars" -> {
-                                    BasicSearchBar(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
-                                    RoundedSearchBar(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
-                                    SearchBarWithSuggestions(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
-                                    SearchBarWithButton(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
+                                    BasicSearchBar(
+                                        modifier = Modifier.background(
+                                            Color.White,
+                                            RoundedCornerShape(20.dp)
+                                        ).padding(20.dp)
+                                    )
+                                    RoundedSearchBar(
+                                        modifier = Modifier.background(
+                                            Color.White,
+                                            RoundedCornerShape(20.dp)
+                                        ).padding(20.dp)
+                                    )
+                                    SearchBarWithSuggestions(
+                                        modifier = Modifier.background(
+                                            Color.White,
+                                            RoundedCornerShape(20.dp)
+                                        ).padding(20.dp)
+                                    )
+                                    SearchBarWithButton(
+                                        modifier = Modifier.background(
+                                            Color.White,
+                                            RoundedCornerShape(20.dp)
+                                        ).padding(20.dp)
+                                    )
                                 }
+
                                 "authentication" -> {
-                                    UsernameField(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
-                                    PasswordField(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
-                                    BasicSignin(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
-                                    BasicSignup(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
+                                    UsernameField(
+                                        modifier = Modifier.background(
+                                            Color.White,
+                                            RoundedCornerShape(20.dp)
+                                        ).padding(20.dp)
+                                    )
+                                    PasswordField(
+                                        modifier = Modifier.background(
+                                            Color.White,
+                                            RoundedCornerShape(20.dp)
+                                        ).padding(20.dp)
+                                    )
+                                    BasicSignin(
+                                        modifier = Modifier.background(
+                                            Color.White,
+                                            RoundedCornerShape(20.dp)
+                                        ).padding(20.dp)
+                                    )
+                                    BasicSignup(
+                                        modifier = Modifier.background(
+                                            Color.White,
+                                            RoundedCornerShape(20.dp)
+                                        ).padding(20.dp)
+                                    )
                                 }
+
                                 "mediacontrols" -> {
-                                    BasicMusicControls(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
-                                    ExtendedMusicControls(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
-                                    VolumeControls(modifier = Modifier.background(Color.White, RoundedCornerShape(20.dp)).padding(20.dp))
+                                    BasicMusicControls(
+                                        modifier = Modifier.background(
+                                            Color.White,
+                                            RoundedCornerShape(20.dp)
+                                        ).padding(20.dp)
+                                    )
+                                    ExtendedMusicControls(
+                                        modifier = Modifier.background(
+                                            Color.White,
+                                            RoundedCornerShape(20.dp)
+                                        ).padding(20.dp)
+                                    )
+                                    VolumeControls(
+                                        modifier = Modifier.background(
+                                            Color.White,
+                                            RoundedCornerShape(20.dp)
+                                        ).padding(20.dp)
+                                    )
                                 }
+
+                                "test" -> {
+                                    Row(horizontalArrangement = Arrangement.spacedBy(20.dp)) {
+                                        PricingCard(
+                                            icon = Res.drawable.app_dots,
+                                            primaryColor = Color(0xFF751dc2),
+                                            forText = "For individuals",
+                                            planNameText = "Basic",
+                                            description = "This is a basic plan designed to get you started for personal projects.",
+                                            price = 99
+                                        )
+                                        PricingCard(
+                                            icon = Res.drawable.app,
+                                            primaryColor = Color(0xFF2157eb),
+                                            forText = "For startups",
+                                            planNameText = "Business",
+                                            description = "This is a pro plan for small-businesses and startups.",
+                                            price = 149,
+                                            features = listOf("All analytical features", "Feet pics every Thursday", "Up to 10 team members", "Premium support")
+                                        )
+                                        PricingCard(
+                                            icon = Res.drawable.dashboard,
+                                            primaryColor = Color(0xFFc21543),
+                                            forText = "For big companies",
+                                            planNameText = "Enterprise",
+                                            description = "This is a professional plan for large-scale use across a large company.",
+                                            price = 249,
+                                            features = listOf("All analytical features", "Feet pics every Day", "Up to 50 team members", "Dedicated support")
+                                        )
+                                    }
+                                    SaleCard(imageUrl = "https://picsum.photos/300/300")
+                                    AccessCard()
+                                }
+
                                 else -> {
                                     Text("whoops")
                                 }
